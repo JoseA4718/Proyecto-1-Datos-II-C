@@ -1,6 +1,12 @@
 #include "interface.h"
 #include "./ui_interface.h"
 #include <iostream>
+#include <QFile>
+#include <QTextStream>
+#include <QMessageBox>
+#include <stdio.h>
+#include <sys/socket.h>
+
 
 using namespace std;
 

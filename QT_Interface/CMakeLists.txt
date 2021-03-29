@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(QT_Interface LANGUAGES CXX)
+project(Proyecto-1-Datos-II-C )
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
