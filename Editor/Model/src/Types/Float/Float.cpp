@@ -4,7 +4,9 @@
 
 #include "Float.h"
 
-Float::Float(float *ptr) {
+Float::Float(float *ptr, string key) {
     this->addr = ptr;
     this->size = FLOAT_SIZE;
+    this->key = key;
+
 }

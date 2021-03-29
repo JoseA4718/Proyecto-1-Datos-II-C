@@ -4,7 +4,9 @@
 
 #include "Double.h"
 
-Double::Double(double *ptr) {
+Double::Double(double *ptr, string key) {
     this->size = DOUBLE_SIZE;
     this->addr = ptr;
+    this->key = key;
+
 }

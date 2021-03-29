@@ -10,7 +10,7 @@
 
 class Double : public Type {
 public:
-    Double(double *ptr);
+    Double(double *ptr, string key);
 };
 
 

@@ -10,7 +10,7 @@
 
 class Char : public Type {
 public:
-    Char(char *ptr);
+    Char(char *ptr, string key);
 
 };
 

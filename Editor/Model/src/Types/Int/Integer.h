@@ -10,7 +10,7 @@
 
 class Integer : public Type {
 public:
-    Integer(int *ptr);
+    Integer(int *ptr, string key);
 
 };
 
