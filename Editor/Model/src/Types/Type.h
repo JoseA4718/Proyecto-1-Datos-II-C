@@ -6,11 +6,13 @@
 
 #define MODEL_TYPE_H
 
+#include <iostream>
 #include "string"
 #include "Reference/Reference.h"
 
 using namespace std;
 
+template<class T>
 class Type {
 protected:
 /**Size in bytes of the variable*/
@@ -23,16 +25,9 @@ protected:
      * and it cannot be any of the reserved words of C!.
      */
     string key;
+    T value;
 public:
 
-    /**
-     * This method is used for getting a reference to this object.
-     * @return Reference<Type> of this element.
-     */
-    Reference<Type> getAddr() {
-        //TODO: ADD THE METHOD HERE TO GET THE REQUESTED VALUE.
-        return Reference<Type>(nullptr, nullptr);
-    }
 };
 
 #endif //MODEL_TYPE_H

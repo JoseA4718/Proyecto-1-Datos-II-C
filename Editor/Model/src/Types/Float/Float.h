@@ -8,7 +8,7 @@
 
 #include "../Type.h"
 
-class Float : public Type {
+class Float : public Type<float> {
 public:
     Float(float *ptr, string key);
 

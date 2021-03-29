@@ -8,7 +8,7 @@
 
 #include "../Type.h"
 
-class Char : public Type {
+class Char : public Type<char> {
 public:
     Char(char *ptr, string key);
 

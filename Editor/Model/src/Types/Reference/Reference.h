@@ -21,7 +21,7 @@ private:
 public:
     Reference(void *addr, T *pointer);
 
-    T getValue();
+
 };
 
 

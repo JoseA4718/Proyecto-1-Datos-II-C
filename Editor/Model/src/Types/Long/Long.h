@@ -8,7 +8,7 @@
 
 #include "../Type.h"
 
-class Long : public Type {
+class Long : public Type<long> {
 public:
     Long(long *ptr, string key);
 

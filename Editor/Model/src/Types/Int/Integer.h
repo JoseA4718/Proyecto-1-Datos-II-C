@@ -8,9 +8,9 @@
 
 #include "../Type.h"
 
-class Integer : public Type {
+class Integer : public Type<int> {
 public:
-    Integer(int *ptr, string key);
+    Integer(int *ptr, string key, int value);
 
 };
 

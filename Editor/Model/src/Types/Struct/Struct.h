@@ -8,14 +8,18 @@
 
 #include "../Type.h"
 
-class Struct : Type {
+class Struct {
 public:
+
     Struct(void *ptr, string key);
 
 private:
-    //List<Type> members;
+    //TODO: List<Type> members;
+    string key;
+    void *addr;
+    int size;
 
-    //TODO: Add a list generic list for adding the members.
+
 
 };
 

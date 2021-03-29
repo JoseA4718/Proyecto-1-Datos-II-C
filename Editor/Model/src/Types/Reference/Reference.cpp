@@ -12,11 +12,6 @@ Reference<T>::Reference(void *addr, T *pointer) : addr(addr), pointer(pointer) {
 
 }
 
-template<class T>
-T Reference<T>::getValue() {
-    //TODO: GET INFO FROM THE SERVER, GIVEN THE MEMORY ADDRESS.
-    //FIXME: ADD A RETURN.
-}
 
-template
-class Reference<Type>;
+
+

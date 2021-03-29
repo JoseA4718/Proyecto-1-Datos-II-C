@@ -8,7 +8,7 @@
 
 #include "../Type.h"
 
-class Double : public Type {
+class Double : public Type<double> {
 public:
     Double(double *ptr, string key);
 };
