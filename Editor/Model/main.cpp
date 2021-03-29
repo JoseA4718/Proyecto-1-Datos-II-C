@@ -1,7 +1,7 @@
 #include <iostream>
 
-int main()
-{
-    std::cout<<"Hello, World!"<<std::endl;
+int main() {
+    int num = 3;
+    int *ptr = &num;
     return 0;
 }
