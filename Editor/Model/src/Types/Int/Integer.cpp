@@ -4,7 +4,9 @@
 
 #include "Integer.h"
 
-Integer::Integer(int* ptr) {
+Integer::Integer(int *ptr, string key) {
     this->size = INT_SIZE;
     this->addr = ptr;
+    this->key = key;
+
 }

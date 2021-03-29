@@ -4,8 +4,8 @@
 
 #include "Char.h"
 
-Char::Char(char *ptr) {
+Char::Char(char *ptr, string key) {
     this->size = CHAR_SIZE;
     this->addr = ptr;
-
+    this->key = key;
 }

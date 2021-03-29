@@ -10,7 +10,12 @@
 
 class Struct : Type {
 public:
-    //TODO add constructor.
+    Struct(void *ptr, string key);
+
+private:
+    //List<Type> members;
+
+    //TODO: Add a list generic list for adding the members.
 
 };
 

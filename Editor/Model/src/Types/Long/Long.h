@@ -10,7 +10,7 @@
 
 class Long : public Type {
 public:
-    Long(long *ptr);
+    Long(long *ptr, string key);
 
 };
 

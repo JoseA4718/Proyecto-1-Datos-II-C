@@ -10,7 +10,7 @@
 
 class Float : public Type {
 public:
-    Float(float * ptr);
+    Float(float *ptr, string key);
 
 };
 
