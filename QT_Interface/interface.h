@@ -15,6 +15,16 @@ public:
     interface(QWidget *parent = nullptr);
     ~interface();
 
+private slots:
+
+    void on_ClearButton_clicked();
+
+    void on_Halt_Button_clicked();
+
+    void on_NextButton_clicked();
+
+    void on_RunButton_clicked();
+
 private:
     Ui::interface *ui;
 };
