@@ -27,7 +27,9 @@ protected:
     string key;
     T value;
 public:
-
+    void show() {
+        cout << "Name: " << this->key << " Value: " << this->value << "\n";
+    }
 };
 
 #endif //MODEL_TYPE_H
