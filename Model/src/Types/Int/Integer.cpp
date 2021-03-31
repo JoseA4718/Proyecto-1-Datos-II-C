@@ -9,5 +9,6 @@ Integer::Integer(int *ptr, string key, int value) {
     this->addr = ptr;
     this->key = key;
     this->value = value;
+    this->counter = 0;
 
 }

@@ -6,9 +6,9 @@
 #define MODEL_INTEGER_H
 
 
-#include "../Type.h"
+#include "../GenericType.h"
 
-class Integer : public Type<int> {
+class Integer : public GenericType<int> {
 public:
     Integer(int *ptr, string key, int value);
 

@@ -3,7 +3,7 @@
 //
 
 #include "Reference.h"
-#include "../Type.h"
+#include "../GenericType.h"
 
 template<class T>
 Reference<T>::Reference(void *addr, T *pointer) : addr(addr), pointer(pointer) {
