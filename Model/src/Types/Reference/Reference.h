@@ -42,6 +42,10 @@ public:
              << "Address pointed: " << this->pointer << "\n";
 
     }
+
+    string getKey() {
+        return this->key;
+    }
 };
 
 

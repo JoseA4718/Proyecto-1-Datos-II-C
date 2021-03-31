@@ -14,7 +14,7 @@ public:
         this->size = DOUBLE_SIZE;
         this->addr = ptr;
         this->key = key;
-        this->counter = 0;
+        this->referenceCount = 0;
 
     }
 };

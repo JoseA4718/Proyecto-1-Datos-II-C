@@ -5,13 +5,23 @@
 int main() {
     Json *json = new Json();
     int a = 8;
-    void *dir = malloc(sizeof(Integer));
-    cout << dir << "\n";
-    Integer *test = new Integer(dir, "testVar", 8);
-    cout << json->generateJson(test) << "\n";
-    void *dir2 = malloc(sizeof(Reference));
+    void *dirVariable = malloc(sizeof(Integer));
+    void *dirReference = malloc(sizeof(Reference));
 
-    Reference *pointerToTestVar = new Reference(dir2, test->getAddr(), "refToTest");
+    cout << "Variable stored in: " << dirVariable << "\n";
+    cout << "Reference stored in: " << dirReference << "\n";
+
+
+    Integer *test = new Integer(dirVariable, "testVar", 8);
+
+    Reference *pointerToTestVar = new Reference(dirReference, test->getAddr(), "refToTest");
+    cout << "---------------------------------------\n";
+
     pointerToTestVar->show();
+    cout << "---------------------------------------\n";
+    cout << json->generateJson(test) << "\n";
+    cout << "---------------------------------------\n";
+    cout << json->generateJson(pointerToTestVar) << "\n";
+
     return 0;
 }

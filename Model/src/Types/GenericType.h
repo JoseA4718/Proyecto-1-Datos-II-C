@@ -40,7 +40,7 @@ public:
 
 
     int getCounter() const {
-        return counter;
+        return referenceCount;
     }
 
 protected:
@@ -50,7 +50,7 @@ protected:
      */
     string key;
     T value;
-    int counter;
+    int referenceCount;
 
 public:
 

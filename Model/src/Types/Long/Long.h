@@ -14,7 +14,7 @@ public:
         this->addr = ptr;
         this->size = LONG_SIZE;
         this->key = key;
-        this->counter = 0;
+        this->referenceCount = 0;
     }
 
 };
