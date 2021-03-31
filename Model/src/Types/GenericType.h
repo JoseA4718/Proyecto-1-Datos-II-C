@@ -20,13 +20,13 @@ protected:
 
 /**Address of where the variable its stored in the server, we get it from the server itself as a response
  * of the method "create"*/
-    T *addr;
+    void *addr;
 public:
     int getSize() const {
         return size;
     }
 
-    T *getAddr() const {
+    void *getAddr() const {
         return addr;
     }
 
@@ -37,6 +37,7 @@ public:
     T getValue() const {
         return value;
     }
+
 
     int getCounter() const {
         return counter;

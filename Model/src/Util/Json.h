@@ -46,7 +46,7 @@ public:
         writer.Key("name"); //string name of the variable
         writer.String(name);
 
-        writer.Key("count");//reference count
+        writer.Key("count");//reference counter
         writer.Int(referenceCounter);
 
         writer.Key("addr");//memory address
@@ -63,7 +63,11 @@ public:
     }
 
     template<class T>
-    string generateJson(Reference<GenericType<T>> obj) {
+    string generateJson(Reference obj) {
+        GenericType<T> *pointer = obj.getPointer();
+        T *address = obj.getAddr();
+        cout << pointer << address;
+
 
     }
 
@@ -73,7 +77,7 @@ public:
     }
 
     template<class T>
-    Reference<GenericType<T>> readJsonReference(string json) {
+    Reference readJsonReference(string json) {
         //TODO: code for generating an instance of GenericType.cpp given json
     }
 

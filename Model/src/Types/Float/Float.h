@@ -10,7 +10,12 @@
 
 class Float : public GenericType<float> {
 public:
-    Float(float *ptr, string key);
+    Float(void *ptr, string key) {
+        this->addr = ptr;
+        this->size = FLOAT_SIZE;
+        this->key = key;
+        this->counter = 0;
+    }
 
 };
 

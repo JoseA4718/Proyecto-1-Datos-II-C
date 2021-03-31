@@ -7,19 +7,41 @@
 
 
 #include "../Constants.h"
+#include "../GenericType.h"
 
-template<typename T>
+using namespace std;
+
 class Reference {
 private:
     /**Address where the object its allocated.*/
     void *addr;
     /**Address pointed*/
-    T *pointer;
+    void *pointer;
+    /** Identifier for the reference type. */
+    string key;
 
 public:
-    Reference(void *addr, T *pointer);
 
+    Reference(void *addr, void *data, string key) {
+        this->key = key;
+        this->addr = addr;
+        this->pointer = data;
+    }
 
+    void *getAddr() const {
+        return addr;
+    }
+
+    void *getPointer() const {
+        return pointer;
+    }
+
+    void show() {
+        cout << "Reference name: " << this->key << "\n"
+             << "Address where its stored: " << this->addr << "\n"
+             << "Address pointed: " << this->pointer << "\n";
+
+    }
 };
 
 
