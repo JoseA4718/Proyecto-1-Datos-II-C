@@ -6,9 +6,9 @@
 #define MODEL_FLOAT_H
 
 
-#include "../Type.h"
+#include "../GenericType.h"
 
-class Float : public Type<float> {
+class Float : public GenericType<float> {
 public:
     Float(float *ptr, string key);
 

@@ -8,5 +8,5 @@ Float::Float(float *ptr, string key) {
     this->addr = ptr;
     this->size = FLOAT_SIZE;
     this->key = key;
-
+    this->counter = 0;
 }

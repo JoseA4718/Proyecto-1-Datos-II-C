@@ -6,9 +6,9 @@
 #define MODEL_DOUBLE_H
 
 
-#include "../Type.h"
+#include "../GenericType.h"
 
-class Double : public Type<double> {
+class Double : public GenericType<double> {
 public:
     Double(double *ptr, string key);
 };

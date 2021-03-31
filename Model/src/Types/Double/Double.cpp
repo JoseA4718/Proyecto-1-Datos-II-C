@@ -8,5 +8,6 @@ Double::Double(double *ptr, string key) {
     this->size = DOUBLE_SIZE;
     this->addr = ptr;
     this->key = key;
+    this->counter = 0;
 
 }

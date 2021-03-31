@@ -6,9 +6,9 @@
 #define MODEL_LONG_H
 
 
-#include "../Type.h"
+#include "../GenericType.h"
 
-class Long : public Type<long> {
+class Long : public GenericType<long> {
 public:
     Long(long *ptr, string key);
 

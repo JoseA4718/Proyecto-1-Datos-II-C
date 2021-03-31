@@ -5,8 +5,8 @@
     <sourceRoots>
       <file path="$PROJECT_DIR$/src" />
     </sourceRoots>
-  </component>
-  <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/src/Util/Json.h" />
+    <libraryRoots>
+      <file path="$PROJECT_DIR$/librerias" />
+    </libraryRoots>
   </component>
 </project>

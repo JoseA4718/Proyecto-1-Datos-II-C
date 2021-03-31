@@ -6,11 +6,11 @@
 #define MODEL_CHAR_H
 
 
-#include "../Type.h"
+#include "../GenericType.h"
 
-class Char : public Type<char> {
+class Char : public GenericType<char> {
 public:
-    Char(char *ptr, string key);
+    Char(char *ptr, string key, char value);
 
 };
 
