@@ -73,16 +73,6 @@
      <string>Console</string>
     </property>
    </widget>
-   <widget class="QListWidget" name="Console_Listview">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>370</y>
-      <width>441</width>
-      <height>71</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="Log_Label">
     <property name="geometry">
      <rect>
@@ -94,16 +84,6 @@
     </property>
     <property name="text">
      <string>Application Log</string>
-    </property>
-   </widget>
-   <widget class="QListWidget" name="Log_View">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>470</y>
-      <width>441</width>
-      <height>81</height>
-     </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="NextButton">
@@ -143,6 +123,26 @@
     </property>
     <property name="text">
      <string>Clear</string>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="LogTextBrowser">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>470</y>
+      <width>431</width>
+      <height>81</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="ConsoleTextBrowser">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>370</y>
+      <width>431</width>
+      <height>81</height>
+     </rect>
     </property>
    </widget>
   </widget>

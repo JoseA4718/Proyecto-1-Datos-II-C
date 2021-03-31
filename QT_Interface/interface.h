@@ -14,6 +14,8 @@ class interface : public QMainWindow
 public:
     interface(QWidget *parent = nullptr);
     ~interface();
+    int counter = 1;
+
 
 private slots:
 
@@ -25,7 +27,10 @@ private slots:
 
     void on_RunButton_clicked();
 
+    void cprint(std::string);
+
 private:
     Ui::interface *ui;
+    QString CodeFile;
 };
 #endif // INTERFACE_H
