@@ -15,8 +15,6 @@ private:
     void *addr;
     /**Address pointed*/
     T *pointer;
-    /**Size in bytes*/
-    int size = REFERENCE_SIZE;
 
 public:
     Reference(void *addr, T *pointer);
