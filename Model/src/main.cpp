@@ -1,7 +1,10 @@
 #include "Types/Int/Integer.h"
 #include "Util/Json.h"
+#include "Compiler/Compiler.h"
+#include "Data Structures/SimplyLinkedList.h"
 
 int main() {
+/*
     //crear objeto y asignar valores
     Integer *variable = new Integer();
     variable->setKey("var1");
@@ -21,6 +24,9 @@ int main() {
     converter->readJson(json, variable2);
 
     cout << variable->getAddr();
+*/
 
+    auto *comp = new Compiler();
+    comp->processLine("ABCDEFGHIJK");
 
 }
