@@ -1,5 +1,4 @@
 //
-
 // Created by eduardo218 on 4/1/21.
 //
 
@@ -7,39 +6,108 @@
 #define MODEL_MESSAGE_H
 
 
+#include <ostream>
 #include "../Json.h"
 #include "Message.h"
-
-static const auto MODIFY = "MODIFY";
-static const auto CREATE = "CREATE";
-static const auto SEARCH = "SEARCH";
 
 class Message {
 private:
 
-    /**Json with the content of the new element, must have at least, a name and value keys.
-     * USE ONLY FOR CREATING A NEW INSTANCE OF AN VARIABLE*/
-    string contentJson;
-
-    /** Type of the object to create, GO TO Compiler.h for further information.*/
-    string type;
     /**
      *  POSSIBLE VALUES:\n
      *  "CREATE" - FOR CREATING AN INSTANCE\n
      *  "MODIFY" - FOR MODIFYING AN EXISTING INSTANCE\n
      *  "SEARCH" - FOR SEARCHING AN INSTANCE*/
     string action;
+    //|-----------------------------------------------------| //
+    //|    * EN CASO DE INSTANCIAR UNA VARIABLE NUEVA  *    | //
+    //|-----------------------------------------------------| //
+    /**Json with the content of the new element, must have at least, a name and value keys.
+     * USE ONLY FOR CREATING A NEW INSTANCE OF AN VARIABLE*/
+    string contentJson;
 
-    /**New value of the variable to modify
-     * USE ONLY FOR MODIFYING A VARIABLE IN THE SERVER*/
-    string newValue;
+    /** Type of the object to create, GO TO Compiler.h for further information.*/
+    string type;
 
-    /** Name of the object to search or modify, expect the contentJson of the obj, or 0 if dont exist
-     * USE WHEN TRYING TO MODIFY OF FIND A VARIABLE IN THE SERVER */
-    string name;
+    //|-----------------------------------------------------| //
+    //|    * EN CASO DE OPERAR DOS VARIABLES  *             | //
+    //|-----------------------------------------------------| //
+    /**New value of the variable to modify, ALSO CAN BE THE IDENTIFIER FOR SEARCHING */
+    string firstVariable;
+
+    /**Name of the variable to take information from */
+    string secondVariable;
+public:
+    const string getAction() const {
+        return action;
+    }
+
+    void setAction(const string &action) {
+        Message::action = action;
+    }
+
+    void show() {
+        cout << "---- Message generated ----\n" <<
+             "action: " << action <<
+             "\ncontentJson: " << contentJson <<
+             "\ntype: " << type <<
+             "\nfirstVariable: " << firstVariable <<
+             "\nsecondVariable: " << secondVariable
+             << "\noperation: " << operation <<
+             "\n______________________________\n";
+    }
+
+    const string getContentJson() const {
+        return contentJson;
+    }
+
+    void setContentJson(const string &contentJson) {
+        Message::contentJson = contentJson;
+    }
+
+    const string getType() const {
+        return type;
+    }
+
+    void setType(const string type) {
+        Message::type = type;
+    }
+
+    const string getFirstVariable() const {
+        return firstVariable;
+    }
+
+    void setFirstVariable(const string firstVariable) {
+        Message::firstVariable = firstVariable;
+    }
+
+    const string getSecondVariable() const {
+        return secondVariable;
+    }
+
+    void setSecondVariable(const string secondVariable) {
+        Message::secondVariable = secondVariable;
+    }
+
+    const string getOperation() const {
+        return operation;
+    }
+
+    void setOperation(const string operation) {
+        Message::operation = operation;
+    }
+
+private:
+    /**Operation to make between the variables */
+    string operation;
 
 
 public:
+    /**
+     * Method for creating the json formatted object of an Primitive data type.
+     * @param name key name of the variable.
+     * @param value value in string of the variable.
+     */
     void fillJson(string name, string value) {
         //CREATE WRITER
         rapidjson::StringBuffer s;
@@ -56,47 +124,6 @@ public:
 
         contentJson = s.GetString();
     }
-
-    string getAction() const {
-        return action;
-    }
-
-    void setAction(const string &action) {
-        Message::action = action;
-    }
-
-    const string &getJson() const {
-        return contentJson;
-    }
-
-    void setJson(const string &json) {
-        Message::contentJson = json;
-    }
-
-    const string &getType() const {
-        return type;
-    }
-
-    void setType(const string &type) {
-        Message::type = type;
-    }
-
-    const string &getNewValue() const {
-        return newValue;
-    }
-
-    void setNewValue(const string &newValue) {
-        Message::newValue = newValue;
-    }
-
-    const string &getName() const {
-        return name;
-    }
-
-    void setName(const string &name) {
-        Message::name = name;
-    }
-
 };
 
 

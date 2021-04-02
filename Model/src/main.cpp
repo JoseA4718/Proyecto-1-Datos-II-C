@@ -1,14 +1,18 @@
-
 #include "Types/Int/Integer.h"
 #include "Util/Json.h"
 #include "Compiler/Compiler.h"
+#include "Data Structures/SimplyLinkedList.h"
 
 int main() {
-    auto *msg = new Message();
-    msg->fillJson("var1", "234");
-    msg->setAction(CREATE);
-    msg->setType(INTEGER_KEY_WORD);
-    cout << Json::generateJson(msg);
+
+    auto *compiler = new Compiler();
+
+
+    // ERROR CON EL TIPO DE DATO
+
+
+    string linea2 = "Integer var = 2";
+    compiler->compile(linea2);
 
 
 }

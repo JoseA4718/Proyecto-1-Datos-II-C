@@ -4,15 +4,6 @@
 #ifndef MODEL_JSON_H
 #define MODEL_JSON_H
 
-static const char *const KEY_VALUE = "key";
-
-static const char *const COUNTER_VALUE = "referenceCount";
-
-static const char *const ADDRESS_VALUE = "addr";
-
-static const char *const VALUE_KEY = "value";
-
-static const char *const POINTER_VALUE = "pointer";
 
 #include "/home/eduardo218/Desktop/Proyecto-1-Datos-II-C/Model/librerias/rapidjson/stringbuffer.h"
 #include "/home/eduardo218/Desktop/Proyecto-1-Datos-II-C/Model/librerias/rapidjson/writer.h"
@@ -128,33 +119,45 @@ public:
         StringBuffer s;
         Writer<StringBuffer> writer(s);
         writer.StartObject();
-
+        /*  "CREATE" - FOR CREATING AN INSTANCE\n
+        *  "MODIFY" - FOR MODIFYING AN EXISTING INSTANCE\n
+        *  "SEARCH" - FOR SEARCHING AN INSTANCE*/
         //FILL THE SPACES IN THE JSON FILE
-        if (msg->getAction() != "") {
-            writer.Key("action"); //string name of the variable
-            writer.String(msg->getAction().c_str());
-        }
-        if (msg->getType() != "") {
-            writer.Key("type"); //string name of the variable
+        if (msg->getAction() == CREATE) {
+            writer.Key("action");
+            writer.String(CREATE);
+
+            writer.Key("contentJson");
+            writer.String(msg->getContentJson().c_str());
+
+            writer.Key("type");
             writer.String(msg->getType().c_str());
         }
-        if (msg->getJson() != "") {
-            writer.Key("type"); //string name of the variable
-            writer.String(msg->getJson().c_str());
+        if (msg->getAction() == MODIFY) {
+            writer.Key("action");
+            writer.String(MODIFY);
+
+            writer.Key("firstVariable");
+            writer.String(msg->getFirstVariable().c_str());
+
+
+            writer.Key("secondVariable"); //string name of the variable
+            writer.String(msg->getSecondVariable().c_str());
+
+            writer.Key("operator"); //string name of the variable
+            writer.String(msg->getOperation().c_str());
+
         }
-        if (msg->getName() != "") {
-            writer.Key("name"); //string name of the variable
-            writer.String(msg->getName().c_str());
-        }
-        if (msg->getNewValue() != "") {
-            writer.Key("newValue"); //string name of the variable
-            writer.String(msg->getNewValue().c_str());
+        if (msg->getAction() == SEARCH) {
+            writer.Key("action");
+            writer.String(SEARCH);
+
+            writer.Key("firstVariable");
+            writer.String(msg->getFirstVariable().c_str());
         }
 
-        writer.EndObject();
-
-        return s.GetString();
     }
+
 
     template<class T>
     static void readJson(const string &json, GenericType<T> *obj) {

@@ -6,7 +6,7 @@
 #define MODEL_REFERENCE_H
 
 
-#include "../Constants.h"
+#include "../../Constants.h"
 #include "../GenericType.h"
 
 using namespace std;

@@ -5,22 +5,13 @@
 #ifndef MODEL_COMPILER_H
 #define MODEL_COMPILER_H
 
+
 #include <utility>
 
 #include "../Util/Json.h"
 #include "../Data Structures/SimplyLinkedList.h"
 #include "../Util/Coms/Message.h"
 
-//RESERVED WORD FOR THE LANGUAGE
-static const auto INTEGER_KEY_WORD = "Integer";
-static const auto FLOAT_KEY_WORD = "Float";
-static const auto DOUBLE_KEY_WORD = "Double";
-static const auto CHAR_KEY_WORD = "Char";
-static const auto LONG_KEY_WORD = "Long";
-static const auto REFERENCE_KEY_WORD = "Reference";
-static const auto STRUCT_KEY_WORD = "Struct";
-//OPERATORS
-static const auto EQUAL_OPERATOR = "=";
 
 class Compiler {
 private:
@@ -55,7 +46,6 @@ public:
             counter++;
         }
         result->append(word);
-        result->show();
         return *result;
     }
 
@@ -70,55 +60,79 @@ public:
      */
     void interpretLine(SimplyLinkedList<string> processedLine) {
         auto *msg = new Message();
-        /*Primera linea es un identificador reservado *Crear instancia* */
-        if (TYPE_IDENTIFIER_LIST->boolSearch(processedLine.get(0))) {
+        int index = 0;
+        int len = processedLine.getLen();
+        string element;
+        if (index >= len)
+            return;
+        element = processedLine.get(index);
+        //***SI INICIA CON IDENTIFICADOR DE TIPO PRIMITIVO*** [1]
+        if (TYPE_IDENTIFIER_LIST->boolSearch(element)) {
+            string name;
+            string value;
             msg->setAction(CREATE);
-            msg->setType(processedLine.get(0));//añadir el tipo de dato al mensaje :)
-
-            if (!isVariableName(processedLine.get(1)) and !TYPE_IDENTIFIER_LIST->boolSearch(processedLine.get(1))) {
-                msg->setName(processedLine.get(1));
-                if (EQUAL_OPERATOR == processedLine.get(2)) {
-                    if (!TYPE_IDENTIFIER_LIST->boolSearch(processedLine.get(3)) and
-                        dataType(processedLine.get(3), processedLine.get(0))) {
-
-                        msg->setNewValue(processedLine.get(3));
-
+            msg->setType(element);
+            index++;
+            if (index >= len)
+                return;
+            element = processedLine.get(index);
+            //*** SI EL NOMBRE DEESPUÉS DEL IDENTIFICADOR NO ES PALABRA RESERVADA Y NO ES UN IDENTIFICADOR USADO EN EL SERVIDOR***[2]
+            if (!isVariableName(element) and !TYPE_IDENTIFIER_LIST->boolSearch(element)) {
+                name = (element);
+                index++;
+                if (index >= len)
+                    return;
+                element = processedLine.get(index);
+                //*** SI SIGUE UN OPERADOR "=" *** [3]
+                if (EQUAL_OPERATOR == element) {
+                    index++;
+                    if (index >= len)
+                        return;
+                    element = processedLine.get(index);
+                    //*** SI EL NOMBRE DEESPUÉS DEL IDENTIFICADOR NO ES PALABRA RESERVADA Y COINCIDE CON EL TIPO QUE SE ASIGNÓ EN [1] *** [4]
+                    if (!TYPE_IDENTIFIER_LIST->boolSearch(element) and
+                        dataType(element, processedLine.get(0))) {
+                        value = (element);
+                        msg->fillJson(name, value);
+                        msg->show();
                     } else {
-                        cout << "\nERROR CON EL TIPO DE DATO PARA ASIGNAR\n";
-
+                        cout << ERROR_DATA_TYPE;
                     }
                 } else {
-                    cout << "\nERROR CON EL OPERADOR A UTILIZAR\n";
-
+                    cout << ERROR_OPERATOR_ASSIGN_VALUE;
                 }
             } else {
-                cout
-                        << "\nERROR CON EL NOMBRE DE LA VARIABLE\n";
+                cout << ERROR_NAME_OF_VARIABLE;
             }
-            //caso para cuando la varia
-        }
-            //MODIFICAR VALOR DE UNA VARIABLE YA ASIGNADA
-
-        else if (isVariableName(processedLine.get(0))) {
-            cout << "Variable: " << processedLine.get(0) << "\n";
-            if (SUPPORTED_OPERTATOR_LIST->boolSearch(processedLine.get(1))) {
+            // *** SI EL VALOR ESTÁ GUARDADO COMO UNA VARIABLE EN EL SERVIDOR +++ [5]
+        } else if (isVariableName(element)) {
+            index++;
+            if (index >= len)
+                return;
+            element = processedLine.get(index);
+            // *** SI EL SIGUIENTE VALOR ES UN OPERADOR DE LA LISTA *** [6]
+            if (SUPPORTED_OPERTATOR_LIST->boolSearch(element)) {
                 msg->setAction(MODIFY);
-
-                cout << "Operación: " << processedLine.get(1) << "\n";
-                if (isVariableName(processedLine.get(2))) {
-                    cout << "Variable: " << processedLine.get(2) << "\n";
+                index++;
+                if (index >= len)
+                    return;
+                element = processedLine.get(index);
+                // *** SI EL VALOR ESTÁ GUARDADO COMO UNA VARIABLE EN EL SERVIDOR +++ [7]
+                if (isVariableName(element)) {
+                    // TODO: ENVIAR REQUEST PARA HACER OPERACION ENTRE VARIABLE 1 Y VARIABLE 2.
                 }
             }
 
         } else {
-            cout << "\nERROR " << processedLine.get(0) << " NO ESTÁ DEFINIDO COMO UN TIPO DE DATO\n";
+            cout << ERROR_DATA_TYPE;
         }
     }
 
     bool isVariableName(string key) {
         Message *msg = new Message();
         msg->setAction(SEARCH);
-        msg->setName(key);//nombre a buscar
+        msg->setFirstVariable(key);//nombre a buscar
+        msg->show();
         // TODO: HACER CLASE QUE SE ENCARGUE DE CONSULTAR AL SERVIDOR Y METER ESTE CÓDIGO AHÍ....
         return false;
     }
