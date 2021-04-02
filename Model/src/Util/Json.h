@@ -37,7 +37,7 @@ public:
 
         //CAST THE VALUE TO CONST CHAR*
         std::ostringstream valueRaw;
-        valueRaw << (T) obj->getValue();
+        valueRaw << obj->getValue();
         string var = valueRaw.str();
         const char *B = var.c_str();
         const char *value = B;

@@ -59,14 +59,14 @@ public:
     }
 
     const void *getAddr() const {
-        return addr;
+        return this->addr;
     }
 
     const string &getKey() const {
         return key;
     }
 
-    T getValue() const {
+    const char *getValue() const {
         return value;
     }
 
