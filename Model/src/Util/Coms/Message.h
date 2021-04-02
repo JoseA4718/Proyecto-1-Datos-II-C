@@ -6,6 +6,10 @@
 #ifndef MODEL_MESSAGE_H
 #define MODEL_MESSAGE_H
 
+
+#include "../Json.h"
+#include "Message.h"
+
 static const auto MODIFY = "MODIFY";
 static const auto CREATE = "CREATE";
 static const auto SEARCH = "SEARCH";
@@ -15,7 +19,8 @@ private:
 
     /**Json with the content of the new element, must have at least, a name and value keys.
      * USE ONLY FOR CREATING A NEW INSTANCE OF AN VARIABLE*/
-    string json;
+    string contentJson;
+
     /** Type of the object to create, GO TO Compiler.h for further information.*/
     string type;
     /**
@@ -29,12 +34,29 @@ private:
      * USE ONLY FOR MODIFYING A VARIABLE IN THE SERVER*/
     string newValue;
 
-    /** Name of the object to search or modify, expect the json of the obj, or 0 if dont exist
+    /** Name of the object to search or modify, expect the contentJson of the obj, or 0 if dont exist
      * USE WHEN TRYING TO MODIFY OF FIND A VARIABLE IN THE SERVER */
     string name;
 
 
 public:
+    void fillJson(string name, string value) {
+        //CREATE WRITER
+        rapidjson::StringBuffer s;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(s);
+        writer.StartObject();
+
+        //FILL THE SPACES IN THE JSON FILE
+        writer.Key(KEY_VALUE); //string name of the variable
+        writer.String(name.c_str());
+
+        writer.Key(VALUE_KEY); //string name of the variable
+        writer.String(value.c_str());
+        writer.EndObject();
+
+        contentJson = s.GetString();
+    }
+
     string getAction() const {
         return action;
     }
@@ -44,11 +66,11 @@ public:
     }
 
     const string &getJson() const {
-        return json;
+        return contentJson;
     }
 
     void setJson(const string &json) {
-        Message::json = json;
+        Message::contentJson = json;
     }
 
     const string &getType() const {

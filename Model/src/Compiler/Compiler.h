@@ -8,7 +8,7 @@
 #include <utility>
 
 #include "../Util/Json.h"
-#include "../Data Structures/SimplyLinkedList.h"+
+#include "../Data Structures/SimplyLinkedList.h"
 #include "../Util/Coms/Message.h"
 
 //RESERVED WORD FOR THE LANGUAGE
@@ -28,7 +28,7 @@ private:
     SimplyLinkedList<string> *TYPE_IDENTIFIER_LIST;
     SimplyLinkedList<string> *SUPPORTED_OPERTATOR_LIST;
 
-private:
+public:
 
     /**
      * Splits a string in substrings, with the slice char as the blank space.
@@ -36,44 +36,53 @@ private:
       * @return Linked list, with substrings, in order, first word on string, first on list.
      */
     static SimplyLinkedList<string> processLine(string line) {
-        //FIXME: fijo peta con el struct
+
         auto *result = new SimplyLinkedList<string>();
-        char character;
         int counter = 0;
+        char character;
         string word;
         while (counter < line.length()) {
             character = line[counter];
-            if (isblank(character) and !word.empty()) {
-                result->append(word);
-                word.clear();
+            if (isblank(character)) {
+                if (!word.empty()) {
+                    result->append(word);
+                    word.clear();
+                }
+
             } else {
                 word.push_back(character);
             }
             counter++;
         }
         result->append(word);
+        result->show();
         return *result;
     }
 
-    /**
+    bool dataType(string basicString, string basicString1) {
+        //todo: programar
+        return true;
+    }
+
+/**
      * Method for interpreting an already processed by processLine()
      * @param processedLine list of words found in the line of code.
      */
     void interpretLine(SimplyLinkedList<string> processedLine) {
-        //empty message
         auto *msg = new Message();
-        //ASIGNAR VALOR A VARIABLE NUEVA
+        /*Primera linea es un identificador reservado *Crear instancia* */
         if (TYPE_IDENTIFIER_LIST->boolSearch(processedLine.get(0))) {
-            cout << "Tipo de dato: " << processedLine.get(0) << "|";
+            msg->setAction(CREATE);
             msg->setType(processedLine.get(0));//añadir el tipo de dato al mensaje :)
-            //si el valor que sigue no está definido en el servidor Y NO ES UN IDENTIFICADOR
-            if (!isVariableName(processedLine.get(1)) and !TYPE_IDENTIFIER_LIST->boolSearch(processedLine.get(1))) {
-                cout << "Nombre de la variable: " << processedLine.get(1) << "|";
 
-                if (SUPPORTED_OPERTATOR_LIST->boolSearch(processedLine.get(2))) {
-                    cout << "Operador: " << processedLine.get(2) << "|";
-                    if (!TYPE_IDENTIFIER_LIST->boolSearch(processedLine.get(3))) {
-                        cout << "Valor para asignar: " << processedLine.get(3) << "\n";
+            if (!isVariableName(processedLine.get(1)) and !TYPE_IDENTIFIER_LIST->boolSearch(processedLine.get(1))) {
+                msg->setName(processedLine.get(1));
+                if (EQUAL_OPERATOR == processedLine.get(2)) {
+                    if (!TYPE_IDENTIFIER_LIST->boolSearch(processedLine.get(3)) and
+                        dataType(processedLine.get(3), processedLine.get(0))) {
+
+                        msg->setNewValue(processedLine.get(3));
+
                     } else {
                         cout << "\nERROR CON EL TIPO DE DATO PARA ASIGNAR\n";
 
@@ -89,9 +98,12 @@ private:
             //caso para cuando la varia
         }
             //MODIFICAR VALOR DE UNA VARIABLE YA ASIGNADA
+
         else if (isVariableName(processedLine.get(0))) {
             cout << "Variable: " << processedLine.get(0) << "\n";
             if (SUPPORTED_OPERTATOR_LIST->boolSearch(processedLine.get(1))) {
+                msg->setAction(MODIFY);
+
                 cout << "Operación: " << processedLine.get(1) << "\n";
                 if (isVariableName(processedLine.get(2))) {
                     cout << "Variable: " << processedLine.get(2) << "\n";
@@ -99,7 +111,7 @@ private:
             }
 
         } else {
-            cout << "\nERROR: Valor no definido\n";
+            cout << "\nERROR " << processedLine.get(0) << " NO ESTÁ DEFINIDO COMO UN TIPO DE DATO\n";
         }
     }
 
@@ -135,8 +147,7 @@ public:
         TYPE_IDENTIFIER_LIST->append(REFERENCE_KEY_WORD);
         TYPE_IDENTIFIER_LIST->append(STRUCT_KEY_WORD);
         SUPPORTED_OPERTATOR_LIST->append(EQUAL_OPERATOR);
-        TYPE_IDENTIFIER_LIST->show();
-        SUPPORTED_OPERTATOR_LIST->show();
+
     }
 };
 

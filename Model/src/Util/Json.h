@@ -17,10 +17,11 @@ static const char *const POINTER_VALUE = "pointer";
 #include "/home/eduardo218/Desktop/Proyecto-1-Datos-II-C/Model/librerias/rapidjson/stringbuffer.h"
 #include "/home/eduardo218/Desktop/Proyecto-1-Datos-II-C/Model/librerias/rapidjson/writer.h"
 #include <sstream>
+#include "iostream"
 #include "../Types/GenericType.h"
 #include "../Types/Int/Integer.h"
-#include "iostream"
 #include "../../librerias/rapidjson/document.h"
+#include "Coms/Message.h"
 
 using namespace rapidjson;
 using namespace std;
@@ -120,6 +121,39 @@ public:
 
         return s.GetString();
 
+    }
+
+    static string generateJson(Message *msg) {
+        //CREATE WRITER
+        StringBuffer s;
+        Writer<StringBuffer> writer(s);
+        writer.StartObject();
+
+        //FILL THE SPACES IN THE JSON FILE
+        if (msg->getAction() != "") {
+            writer.Key("action"); //string name of the variable
+            writer.String(msg->getAction().c_str());
+        }
+        if (msg->getType() != "") {
+            writer.Key("type"); //string name of the variable
+            writer.String(msg->getType().c_str());
+        }
+        if (msg->getJson() != "") {
+            writer.Key("type"); //string name of the variable
+            writer.String(msg->getJson().c_str());
+        }
+        if (msg->getName() != "") {
+            writer.Key("name"); //string name of the variable
+            writer.String(msg->getName().c_str());
+        }
+        if (msg->getNewValue() != "") {
+            writer.Key("newValue"); //string name of the variable
+            writer.String(msg->getNewValue().c_str());
+        }
+
+        writer.EndObject();
+
+        return s.GetString();
     }
 
     template<class T>
