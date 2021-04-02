@@ -10,7 +10,13 @@
 
 class Char : public GenericType<char> {
 public:
-    Char(char *ptr, string key, char value);
+    Char( string key, char value) {
+        this->size = CHAR_SIZE;
+        this->addr = nullptr;
+        this->key = key;
+        this->referenceCount = 0;
+        this->value = value;
+    }
 
 };
 

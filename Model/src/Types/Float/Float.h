@@ -10,7 +10,15 @@
 
 class Float : public GenericType<float> {
 public:
-    Float(float *ptr, string key);
+    Float(string key, float value) {
+        this->addr = nullptr;
+        this->value = value;
+        this->size = FLOAT_SIZE;
+        this->key = key;
+        this->referenceCount = 0;
+        this->value = value;
+
+    }
 
 };
 
