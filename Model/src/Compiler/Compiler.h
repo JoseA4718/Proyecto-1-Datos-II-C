@@ -59,7 +59,7 @@ public:
      */
     void interpretLine(SimplyLinkedList<string> processedLine) {
         //empty message
-        Message *msg = new Message();
+        auto *msg = new Message();
         //si el primero es un identificador
         if (TYPE_IDENTIFIER_LIST->is(processedLine.get(0))) {
             cout << "Tipo de dato: " << processedLine.get(0) << "\n";
@@ -77,7 +77,16 @@ public:
                 }
             }
             //caso para cuando la varia
-        } else if (isVariableName(processedLine.get(0))) {
+        }
+            // si es una variable que ya está en el servidor (cambiar el valor?)
+        else if (isVariableName(processedLine.get(0))) {
+            cout << "Variable: " << processedLine.get(0) << "\n";
+            if (SUPPORTED_OPERTATOR_LIST->is(processedLine.get(1))) {
+                cout << "Operación: " << processedLine.get(1) << "\n";
+                if (isVariableName(processedLine.get(2))) {
+                    cout << "Variable: " << processedLine.get(2) << "\n";
+                }
+            }
 
         }
     }
@@ -87,7 +96,7 @@ public:
         msg->setAction(SEARCH);
         msg->setName(key);//nombre a buscar
         // TODO: HACER CLASE QUE SE ENCARGUE DE CONSULTAR AL SERVIDOR Y METER ESTE CÓDIGO AHÍ....
-        return false;
+        return true;
     }
 
     bool isStruct(string key) {
