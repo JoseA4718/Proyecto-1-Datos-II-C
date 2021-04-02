@@ -10,7 +10,7 @@
 
 class Float : public GenericType<float> {
 public:
-    Float(string key, float value) {
+    Float(string key, const char *value) {
         this->addr = nullptr;
         this->value = value;
         this->size = FLOAT_SIZE;

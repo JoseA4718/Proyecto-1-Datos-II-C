@@ -10,7 +10,7 @@
 
 class Char : public GenericType<char> {
 public:
-    Char( string key, char value) {
+    Char( string key, const char *value) {
         this->size = CHAR_SIZE;
         this->addr = nullptr;
         this->key = key;

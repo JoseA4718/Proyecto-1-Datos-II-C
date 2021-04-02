@@ -10,7 +10,7 @@
 
 class Double : public GenericType<double> {
 public:
-    Double(string key, double value) {
+    Double(string key, const char *value) {
         this->size = DOUBLE_SIZE;
         this->addr = nullptr;
         this->key = key;
