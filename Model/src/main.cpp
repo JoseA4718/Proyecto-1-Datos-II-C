@@ -5,7 +5,7 @@
 
 int main() {
     Compiler *compiler = new Compiler();
-    string linea = "angosto = a_momir";
+    string linea = "Integer  = 3";
     SimplyLinkedList<string> processedLine = compiler->processLine(linea);
     processedLine.show();
     compiler->interpretLine(processedLine);

@@ -62,19 +62,21 @@ public:
         auto *msg = new Message();
         //si el primero es un identificador
         if (TYPE_IDENTIFIER_LIST->is(processedLine.get(0))) {
-            cout << "Tipo de dato: " << processedLine.get(0) << "\n";
+            cout << "Tipo de dato: " << processedLine.get(0) << "|";
             msg->setType(processedLine.get(0));//añadir el tipo de dato al mensaje :)
             //si el valor que sigue no está definido en el servidor Y NO ES UN IDENTIFICADOR
-
             if (!isVariableName(processedLine.get(1)) and !TYPE_IDENTIFIER_LIST->is(processedLine.get(1))) {
-                cout << "Nombre de la variable: " << processedLine.get(1) << "\n";
+                cout << "Nombre de la variable: " << processedLine.get(1) << "|";
 
                 if (SUPPORTED_OPERTATOR_LIST->is(processedLine.get(2))) {
-                    cout << "Operador: " << processedLine.get(2) << "\n";
+                    cout << "Operador: " << processedLine.get(2) << "|";
                     if (!TYPE_IDENTIFIER_LIST->is(processedLine.get(3))) {
                         cout << "Valor para asignar: " << processedLine.get(3) << "\n";
                     }
                 }
+            } else {
+                cout
+                        << "error, después de definir una variable, se debe ingresar un identificador que no esté usado ya....\n";
             }
             //caso para cuando la varia
         }
@@ -96,7 +98,7 @@ public:
         msg->setAction(SEARCH);
         msg->setName(key);//nombre a buscar
         // TODO: HACER CLASE QUE SE ENCARGUE DE CONSULTAR AL SERVIDOR Y METER ESTE CÓDIGO AHÍ....
-        return true;
+        return false;
     }
 
     bool isStruct(string key) {
