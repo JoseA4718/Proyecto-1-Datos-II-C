@@ -5,6 +5,8 @@
 #ifndef MODEL_COMPILER_H
 #define MODEL_COMPILER_H
 
+#include <utility>
+
 #include "../Util/Json.h"
 #include "../Data Structures/SimplyLinkedList.h"+
 #include "../Util/Coms/Message.h"
@@ -26,7 +28,7 @@ private:
     SimplyLinkedList<string> *TYPE_IDENTIFIER_LIST;
     SimplyLinkedList<string> *SUPPORTED_OPERTATOR_LIST;
 
-public:
+private:
 
     /**
      * Splits a string in substrings, with the slice char as the blank space.
@@ -60,36 +62,44 @@ public:
     void interpretLine(SimplyLinkedList<string> processedLine) {
         //empty message
         auto *msg = new Message();
-        //si el primero es un identificador
-        if (TYPE_IDENTIFIER_LIST->is(processedLine.get(0))) {
+        //ASIGNAR VALOR A VARIABLE NUEVA
+        if (TYPE_IDENTIFIER_LIST->boolSearch(processedLine.get(0))) {
             cout << "Tipo de dato: " << processedLine.get(0) << "|";
             msg->setType(processedLine.get(0));//añadir el tipo de dato al mensaje :)
             //si el valor que sigue no está definido en el servidor Y NO ES UN IDENTIFICADOR
-            if (!isVariableName(processedLine.get(1)) and !TYPE_IDENTIFIER_LIST->is(processedLine.get(1))) {
+            if (!isVariableName(processedLine.get(1)) and !TYPE_IDENTIFIER_LIST->boolSearch(processedLine.get(1))) {
                 cout << "Nombre de la variable: " << processedLine.get(1) << "|";
 
-                if (SUPPORTED_OPERTATOR_LIST->is(processedLine.get(2))) {
+                if (SUPPORTED_OPERTATOR_LIST->boolSearch(processedLine.get(2))) {
                     cout << "Operador: " << processedLine.get(2) << "|";
-                    if (!TYPE_IDENTIFIER_LIST->is(processedLine.get(3))) {
+                    if (!TYPE_IDENTIFIER_LIST->boolSearch(processedLine.get(3))) {
                         cout << "Valor para asignar: " << processedLine.get(3) << "\n";
+                    } else {
+                        cout << "\nERROR CON EL TIPO DE DATO PARA ASIGNAR\n";
+
                     }
+                } else {
+                    cout << "\nERROR CON EL OPERADOR A UTILIZAR\n";
+
                 }
             } else {
                 cout
-                        << "error, después de definir una variable, se debe ingresar un identificador que no esté usado ya....\n";
+                        << "\nERROR CON EL NOMBRE DE LA VARIABLE\n";
             }
             //caso para cuando la varia
         }
-            // si es una variable que ya está en el servidor (cambiar el valor?)
+            //MODIFICAR VALOR DE UNA VARIABLE YA ASIGNADA
         else if (isVariableName(processedLine.get(0))) {
             cout << "Variable: " << processedLine.get(0) << "\n";
-            if (SUPPORTED_OPERTATOR_LIST->is(processedLine.get(1))) {
+            if (SUPPORTED_OPERTATOR_LIST->boolSearch(processedLine.get(1))) {
                 cout << "Operación: " << processedLine.get(1) << "\n";
                 if (isVariableName(processedLine.get(2))) {
                     cout << "Variable: " << processedLine.get(2) << "\n";
                 }
             }
 
+        } else {
+            cout << "\nERROR: Valor no definido\n";
         }
     }
 
@@ -106,19 +116,27 @@ public:
         return false;
     }
 
+public:
+    void compile(string line) {
+        SimplyLinkedList<string> processedLine = processLine(std::move(line));
+        interpretLine(processedLine);
+    }
+
     Compiler() {
         TYPE_IDENTIFIER_LIST = new SimplyLinkedList<string>();
         SUPPORTED_OPERTATOR_LIST = new SimplyLinkedList<string>();
 
 
-        TYPE_IDENTIFIER_LIST->append(INTEGER_KEY_WORD)
-                .append(FLOAT_KEY_WORD)
-                .append(DOUBLE_KEY_WORD)
-                .append(CHAR_KEY_WORD)
-                .append(LONG_KEY_WORD)
-                .append(REFERENCE_KEY_WORD)
-                .append(STRUCT_KEY_WORD);
+        TYPE_IDENTIFIER_LIST->append(INTEGER_KEY_WORD);
+        TYPE_IDENTIFIER_LIST->append(FLOAT_KEY_WORD);
+        TYPE_IDENTIFIER_LIST->append(DOUBLE_KEY_WORD);
+        TYPE_IDENTIFIER_LIST->append(CHAR_KEY_WORD);
+        TYPE_IDENTIFIER_LIST->append(LONG_KEY_WORD);
+        TYPE_IDENTIFIER_LIST->append(REFERENCE_KEY_WORD);
+        TYPE_IDENTIFIER_LIST->append(STRUCT_KEY_WORD);
         SUPPORTED_OPERTATOR_LIST->append(EQUAL_OPERATOR);
+        TYPE_IDENTIFIER_LIST->show();
+        SUPPORTED_OPERTATOR_LIST->show();
     }
 };
 

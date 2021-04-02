@@ -82,7 +82,7 @@ public:
      * Method used for adding an element to the end of the list.
      * @param element: Type int object
      */
-    SimplyLinkedList<T> append(T element) {
+    void append(T element) {
         /**> Memory assignment for the Node*/
         auto *newElement = (Node<T> *) (malloc(sizeof(Node<T>)));
         /**> Creating the Node instance in the memory space assigned*/
@@ -95,7 +95,7 @@ public:
             this->tail = newElement;
         }
         this->len += 1;
-        return *this;
+
     }
 
     /**>
@@ -136,14 +136,18 @@ public:
         return tmp->getValue();
     }
 
-    bool is(T element) {
+    bool boolSearch(T element) {
         bool result = false;
         Node<T> *tmp = this->head;
+        //cout << "Searching: " << element << "\n";
         for (int i = 0; i < (this->len); ++i) {
             if (tmp->getValue() == element) {
+                //cout << "Found it!!\n";
+
                 result = true;
                 break;
             }
+            //cout << "Visiting: " << tmp->getValue() << "\n";
             tmp = tmp->getNext();
         }
         return result;
