@@ -5,6 +5,7 @@
 #ifndef MODEL_SIMPLYLINKEDLIST_H
 #define MODEL_SIMPLYLINKEDLIST_H
 
+
 template<typename T>
 class Node {
 
@@ -132,6 +133,19 @@ public:
 
         }
         return tmp->getValue();
+    }
+
+    bool is(T element) {
+        bool result = false;
+        Node<T> *tmp = this->head;
+        for (int i = 0; i < (this->len); ++i) {
+            if (tmp->getValue() == element) {
+                result = true;
+                break;
+            }
+            tmp = tmp->getNext();
+        }
+        return result;
     }
 
     void delIndex(int index) {

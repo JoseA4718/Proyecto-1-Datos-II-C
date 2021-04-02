@@ -26,7 +26,11 @@ int main() {
     cout << variable->getAddr();
 */
 
-    auto *comp = new Compiler();
-    comp->processLine("ABCDEFGHIJK");
 
+    SimplyLinkedList<int> *lista = new SimplyLinkedList<int>();
+    lista->append(1);
+    lista->append(2);
+    lista->append(3);
+    lista->append(4);
+    cout << lista->is(4);
 }

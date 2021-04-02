@@ -16,13 +16,40 @@ static const auto STRUCT_KEY_WORD = "Struct";
 
 
 #include "../Util/Json.h"
-
+#include "../Data Structures/SimplyLinkedList.h"+
 
 class Compiler {
 private:
     Json json;
 public:
-    void processLine(string line);
+    /**
+     * Splits a string in substrings, with the slice char as the blank space.
+     * @param line string to split.
+      * @return Linked list, with substrings, in order, first word on string, first on list.
+     */
+    static SimplyLinkedList<string> processLine(string line) {
+        auto *result = new SimplyLinkedList<string>();
+        char character;
+        int counter = 0;
+        string word;
+        while (counter < line.length()) {
+            character = line[counter];
+            if (isblank(character) and !word.empty()) {
+                result->append(word);
+                result->show();
+                word.clear();
+            } else {
+                word.push_back(character);
+            }
+            counter++;
+        }
+        result->append(word);
+        return *result;
+    }
+
+    static string isNativeTypeDef(const string &word) {
+
+    }
 };
 
 
