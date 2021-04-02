@@ -1,7 +1,9 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
-
+#include "string"
 #include <QMainWindow>
+
+using namespace std;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class interface; }
@@ -16,7 +18,6 @@ public:
     ~interface();
     int counter = 1;
 
-
 private slots:
 
     void on_ClearButton_clicked();
@@ -29,8 +30,13 @@ private slots:
 
     void cprint(std::string);
 
+    void checkLine(std::string);
+
 private:
     Ui::interface *ui;
     QString CodeFile;
+    string type, name, newStr, next, previous, value;
+    int pos, spaceCheck;
+
 };
 #endif // INTERFACE_H
