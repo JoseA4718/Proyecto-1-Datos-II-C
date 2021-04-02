@@ -164,6 +164,7 @@ public:
             const char *pointer = doc[POINTER_VALUE].GetString();
             obj->setPointer(pointer);
         }
+        return *obj;
     }
 
 };

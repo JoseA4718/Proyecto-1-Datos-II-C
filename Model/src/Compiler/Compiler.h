@@ -5,6 +5,9 @@
 #ifndef MODEL_COMPILER_H
 #define MODEL_COMPILER_H
 
+#include "../Util/Json.h"
+#include "../Data Structures/SimplyLinkedList.h"+
+
 //RESERVED WORD FOR THE LANGUAGE
 static const auto INTEGER_KEY_WORD = "Integer";
 static const auto FLOAT_KEY_WORD = "Float";
@@ -15,13 +18,25 @@ static const auto REFERENCE_KEY_WORD = "Reference";
 static const auto STRUCT_KEY_WORD = "Struct";
 
 
-#include "../Util/Json.h"
-#include "../Data Structures/SimplyLinkedList.h"+
-
 class Compiler {
 private:
     Json json;
+    SimplyLinkedList<string> *TYPE_IDENTIFIER_LIST;
+
+    Compiler() {
+        TYPE_IDENTIFIER_LIST = new SimplyLinkedList<string>();
+
+        TYPE_IDENTIFIER_LIST->append(INTEGER_KEY_WORD)
+                .append(FLOAT_KEY_WORD)
+                .append(DOUBLE_KEY_WORD)
+                .append(CHAR_KEY_WORD)
+                .append(LONG_KEY_WORD)
+                .append(REFERENCE_KEY_WORD)
+                .append(STRUCT_KEY_WORD);
+    }
+
 public:
+
     /**
      * Splits a string in substrings, with the slice char as the blank space.
      * @param line string to split.
@@ -47,7 +62,7 @@ public:
         return *result;
     }
 
-    static string isNativeTypeDef(const string &word) {
+    static void interpretLine(SimplyLinkedList<string> processedLine) {
 
     }
 };

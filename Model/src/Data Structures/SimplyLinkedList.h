@@ -82,7 +82,7 @@ public:
      * Method used for adding an element to the end of the list.
      * @param element: Type int object
      */
-    void append(T element) {
+    SimplyLinkedList<T> append(T element) {
         /**> Memory assignment for the Node*/
         auto *newElement = (Node<T> *) (malloc(sizeof(Node<T>)));
         /**> Creating the Node instance in the memory space assigned*/
@@ -95,6 +95,7 @@ public:
             this->tail = newElement;
         }
         this->len += 1;
+        return *this;
     }
 
     /**>
