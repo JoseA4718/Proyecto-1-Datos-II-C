@@ -10,7 +10,14 @@
 
 class Double : public GenericType<double> {
 public:
-    Double(double *ptr, string key);
+    Double(string key, double value) {
+        this->size = DOUBLE_SIZE;
+        this->addr = nullptr;
+        this->key = key;
+        this->referenceCount = 0;
+        this->value = value;
+
+    }
 };
 
 
