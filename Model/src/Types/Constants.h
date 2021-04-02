@@ -16,4 +16,6 @@ enum SIZE {
     DOUBLE_SIZE = 8,
     REFERENCE_SIZE = 4
 };
+
+
 #endif //MODEL_CONSTANTS_H

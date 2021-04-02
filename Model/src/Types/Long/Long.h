@@ -10,8 +10,10 @@
 
 class Long : public GenericType<long> {
 public:
-    Long(void *ptr, string key) {
-        this->addr = ptr;
+    Long(string key, long value) {
+        this->addr = nullptr;
+        this->value = value;
+
         this->size = LONG_SIZE;
         this->key = key;
         this->referenceCount = 0;

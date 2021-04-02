@@ -10,11 +10,14 @@
 
 class Integer : public GenericType<int> {
 public:
-    Integer(void *addr, string key, int value) {
+    Integer() {
+
+    }
+
+    Integer(string key, const char *value) {
         this->size = INT_SIZE;
         this->referenceCount = 0;
-
-        this->addr = addr;
+        this->addr = nullptr;
         this->key = key;
         this->value = value;
 

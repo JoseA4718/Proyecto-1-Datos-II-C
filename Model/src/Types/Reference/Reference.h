@@ -14,25 +14,35 @@ using namespace std;
 class Reference {
 private:
     /**Address where the object its allocated.*/
-    void *addr;
+    const char *addr;
     /**Address pointed*/
-    void *pointer;
+    const char *pointer;
     /** Identifier for the reference type. */
     string key;
 
 public:
 
-    Reference(void *addr, void *data, string key) {
-        this->key = key;
-        this->addr = addr;
-        this->pointer = data;
+    Reference() {
+        ;
     }
 
-    void *getAddr() const {
+    void setAddr(const char *addr) {
+        Reference::addr = addr;
+    }
+
+    void setPointer(const char *pointer) {
+        Reference::pointer = pointer;
+    }
+
+    void setKey(const string &key) {
+        Reference::key = key;
+    }
+
+    const char *getAddr() const {
         return addr;
     }
 
-    void *getPointer() const {
+    const char *const getPointer() const {
         return pointer;
     }
 
