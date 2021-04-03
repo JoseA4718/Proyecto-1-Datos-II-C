@@ -58,13 +58,13 @@ public:
      * Method for interpreting an already processed by processLine()
      * @param processedLine list of words found in the line of code.
      */
-    void interpretLine(SimplyLinkedList<string> processedLine) {
+    string interpretLine(SimplyLinkedList<string> processedLine) {
         auto *msg = new Message();
         int index = 0;
         int len = processedLine.getLen();
         string element;
         if (index >= len)
-            return;
+            return "";
         element = processedLine.get(index);
         //***SI INICIA CON IDENTIFICADOR DE TIPO PRIMITIVO*** [1]
         if (TYPE_IDENTIFIER_LIST->boolSearch(element)) {
@@ -74,20 +74,20 @@ public:
             msg->setType(element);
             index++;
             if (index >= len)
-                return;
+                return "";
             element = processedLine.get(index);
             //*** SI EL NOMBRE DEESPUÉS DEL IDENTIFICADOR NO ES PALABRA RESERVADA Y NO ES UN IDENTIFICADOR USADO EN EL SERVIDOR***[2]
             if (!isVariableName(element) and !TYPE_IDENTIFIER_LIST->boolSearch(element)) {
                 name = (element);
                 index++;
                 if (index >= len)
-                    return;
+                    return "";
                 element = processedLine.get(index);
                 //*** SI SIGUE UN OPERADOR "=" *** [3]
                 if (EQUAL_OPERATOR == element) {
                     index++;
                     if (index >= len)
-                        return;
+                        return "";
                     element = processedLine.get(index);
                     //*** SI EL NOMBRE DEESPUÉS DEL IDENTIFICADOR NO ES PALABRA RESERVADA Y COINCIDE CON EL TIPO QUE SE ASIGNÓ EN [1] *** [4]
                     if (!TYPE_IDENTIFIER_LIST->boolSearch(element) and
@@ -108,14 +108,14 @@ public:
         } else if (isVariableName(element)) {
             index++;
             if (index >= len)
-                return;
+                return "";
             element = processedLine.get(index);
             // *** SI EL SIGUIENTE VALOR ES UN OPERADOR DE LA LISTA *** [6]
             if (SUPPORTED_OPERTATOR_LIST->boolSearch(element)) {
                 msg->setAction(MODIFY);
                 index++;
                 if (index >= len)
-                    return;
+                    return "";
                 element = processedLine.get(index);
                 // *** SI EL VALOR ESTÁ GUARDADO COMO UNA VARIABLE EN EL SERVIDOR +++ [7]
                 if (isVariableName(element)) {
@@ -126,13 +126,16 @@ public:
         } else {
             cout << ERROR_DATA_TYPE;
         }
+        Json *json1 = new Json();
+        return json1->generateJson(msg);
+        return "";
     }
 
     bool isVariableName(string key) {
         Message *msg = new Message();
         msg->setAction(SEARCH);
         msg->setFirstVariable(key);//nombre a buscar
-        msg->show();
+        //msg->show();
         // TODO: HACER CLASE QUE SE ENCARGUE DE CONSULTAR AL SERVIDOR Y METER ESTE CÓDIGO AHÍ....
         return false;
     }
@@ -143,9 +146,9 @@ public:
     }
 
 public:
-    void compile(string line) {
+    string compile(string line) {
         SimplyLinkedList<string> processedLine = processLine(std::move(line));
-        interpretLine(processedLine);
+        return interpretLine(processedLine);
     }
 
     Compiler() {

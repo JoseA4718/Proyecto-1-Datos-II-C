@@ -5,8 +5,8 @@
 #define MODEL_JSON_H
 
 
-#include "/home/eduardo218/Desktop/Proyecto-1-Datos-II-C/Model/librerias/rapidjson/stringbuffer.h"
-#include "/home/eduardo218/Desktop/Proyecto-1-Datos-II-C/Model/librerias/rapidjson/writer.h"
+#include "/home/josea4718/Desktop/Datos II/C!/Proyecto-1-Datos-II-C/Model/librerias/rapidjson/stringbuffer.h"
+#include "/home/josea4718/Desktop/Datos II/C!/Proyecto-1-Datos-II-C/Model/librerias/rapidjson/writer.h"
 #include <sstream>
 #include "iostream"
 #include "../Types/GenericType.h"
@@ -155,6 +155,8 @@ public:
             writer.Key("firstVariable");
             writer.String(msg->getFirstVariable().c_str());
         }
+        writer.EndObject();
+        return s.GetString();
 
     }
 

@@ -2,6 +2,7 @@
 #define INTERFACE_H
 #include "string"
 #include <QMainWindow>
+#include "../Model/src/Compiler/Compiler.h"
 
 using namespace std;
 
@@ -37,6 +38,8 @@ private:
     QString CodeFile;
     string type, name, newStr, next, previous, value;
     int pos, spaceCheck;
+    Compiler *compiler;
+
 
 };
 #endif // INTERFACE_H

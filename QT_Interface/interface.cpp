@@ -24,6 +24,7 @@ interface::interface(QWidget *parent)
     , ui(new Ui::interface)
 {
     ui->setupUi(this);
+    compiler = new Compiler();
 }
 
 interface::~interface()
@@ -32,43 +33,8 @@ interface::~interface()
 }
 
 void interface::checkLine(string Line){
-    if(!Line.find("Integer") or !Line.find("Long") or !Line.find("Char") or !Line.find("Double") or !Line.find("Float") or !Line.find("Reference") or !Line.find("Struct")){
-        if(!Line.find("Integer")){
-            type = "Integer";
-            size_t typeFound = Line.find("Integer");
-            pos = typeFound + 8;
-            while(next != ";"){
-                previous = line[pos];
-                newStr.append(previous);
-                next = line[pos + 1];
-                spaceCheck = next[0];
-                if (isspace(spaceCheck)){
-                    name = newStr;
-                    cout << "Name: " + name << endl;
-                    newStr = "";
-                    size_t equalsFound = line.find("=");
-                    if (equalsFound != string::npos){
-                        pos = equalsFound + 2;
-                        while (next != ";"){
-                            previous = line[pos];
-                            newStr.append(previous);
-                            next = line[pos + 1];
-                            pos += 1;
-                        }
-                        value = newStr;
-                        cout << "Value: " + value << endl;
-                        break;
-                    }
-
-                }
-                pos += 1;
-            }
-
-        }
-    }
-    else{
-        cout << "operacion" << endl;
-    }
+    cprint(this->compiler->compile(line));
+    cout << this->compiler->compile(line) << endl;
 }
 
 void interface::on_ClearButton_clicked()
@@ -106,7 +72,6 @@ void interface::on_RunButton_clicked()
     ifstream MyReadFile("code.txt");
     getline(MyReadFile, line);
     checkLine(line);
-    cprint(line);
     MyReadFile.close();
     counter += 1;
 }
