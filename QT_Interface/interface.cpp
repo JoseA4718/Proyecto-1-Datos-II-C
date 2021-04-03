@@ -13,6 +13,7 @@
 #include "../Model/src/Types/Int/Integer.h"
 #include "../Model/src/Types/Long/Long.h"
 #include "../Model/src/Types/Reference/Reference.h"
+#include "../Model/src/Types/GenericType.h"
 
 
 using namespace std;
@@ -40,7 +41,7 @@ void interface::checkLine(string Line){
 void interface::on_ClearButton_clicked()
 {
     cprint("Application Log Cleared...");
-
+    ui->LogTextBrowser->clear();
 }
 
 void interface::on_Halt_Button_clicked()
@@ -79,5 +80,28 @@ void interface::on_RunButton_clicked()
 void interface::cprint(string string1){
     ui->ConsoleTextBrowser->append(QString::fromStdString(string1));
 }
+
+void interface::RamViewPrint(GenericType *type){
+
+    const char* address = type->getAddr();
+    std::string address1 = address;
+
+    string name1 = type->getKey();
+
+    const char* value= type->getValue();
+    std::string value1 = value;
+
+    int references = type->getCounter();
+    stringstream ss;
+    ss << references;
+    string references1 = ss.str();
+
+    ui->NameBrowser->append(QString::fromStdString(name1));
+    ui->ValueBrowser->append(QString::fromStdString(value1));
+    ui->AddressBrowser->append(QString::fromStdString(address1));
+    ui->ReferenceBrowser->append(QString::fromStdString(references1));
+
+}
+
 
 

@@ -12,7 +12,7 @@
 
 using namespace std;
 
-template<class T>
+
 class GenericType {
 protected:
     /**Size in bytes of the variable*/
@@ -58,7 +58,7 @@ public:
         GenericType::referenceCount = referenceCount;
     }
 
-    const void *getAddr() const {
+    const char *getAddr() const {
         return this->addr;
     }
 

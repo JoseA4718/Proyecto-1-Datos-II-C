@@ -3,6 +3,7 @@
 #include "string"
 #include <QMainWindow>
 #include "../Model/src/Compiler/Compiler.h"
+#include "../Model/src/Types/GenericType.h"
 
 using namespace std;
 
@@ -32,6 +33,8 @@ private slots:
     void cprint(std::string);
 
     void checkLine(std::string);
+
+    void RamViewPrint(GenericType *type);
 
 private:
     Ui::interface *ui;

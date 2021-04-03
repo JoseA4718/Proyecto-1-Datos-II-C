@@ -8,7 +8,7 @@
 
 #include "../GenericType.h"
 
-class Long : public GenericType<long> {
+class Long : public GenericType {
 public:
     Long(string key, const char *value) {
         this->addr = nullptr;

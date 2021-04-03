@@ -8,7 +8,7 @@
 
 #include "../GenericType.h"
 
-class Integer : public GenericType<int> {
+class Integer : public GenericType {
 public:
     Integer() {
 

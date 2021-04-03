@@ -8,7 +8,7 @@
 
 #include "../GenericType.h"
 
-class Float : public GenericType<float> {
+class Float : public GenericType {
 public:
     Float(string key, const char *value) {
         this->addr = nullptr;

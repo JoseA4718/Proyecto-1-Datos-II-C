@@ -5,8 +5,8 @@
 #define MODEL_JSON_H
 
 
-#include "/home/josea4718/Desktop/Datos II/C!/Proyecto-1-Datos-II-C/Model/librerias/rapidjson/stringbuffer.h"
-#include "/home/josea4718/Desktop/Datos II/C!/Proyecto-1-Datos-II-C/Model/librerias/rapidjson/writer.h"
+#include "../Model/librerias/rapidjson/stringbuffer.h"
+#include "../Model/librerias/rapidjson/writer.h"
 #include <sstream>
 #include "iostream"
 #include "../Types/GenericType.h"
@@ -21,8 +21,7 @@ class Json {
     //TODO: hacer singleton
 public:
 
-    template<class T>
-    static string generateJson(GenericType<T> *obj) {
+    static string generateJson(GenericType *obj) {
         //GET THE VALUES FROM THE OBJECT
         const char *name = obj->getKey().c_str();
         int referenceCounter = obj->getCounter();
@@ -160,9 +159,7 @@ public:
 
     }
 
-
-    template<class T>
-    static void readJson(const string &json, GenericType<T> *obj) {
+    static void readJson(const string &json, GenericType *obj) {
 
         rapidjson::Document doc;
         doc.Parse<kParseDefaultFlags>(json.c_str());

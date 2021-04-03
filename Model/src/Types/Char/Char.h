@@ -8,7 +8,7 @@
 
 #include "../GenericType.h"
 
-class Char : public GenericType<char> {
+class Char : public GenericType {
 public:
     Char( string key, const char *value) {
         this->size = CHAR_SIZE;

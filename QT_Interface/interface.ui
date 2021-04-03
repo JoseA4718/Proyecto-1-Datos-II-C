@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1339</width>
+    <height>717</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -32,15 +32,15 @@
      <rect>
       <x>10</x>
       <y>60</y>
-      <width>541</width>
-      <height>281</height>
+      <width>911</width>
+      <height>321</height>
      </rect>
     </property>
    </widget>
    <widget class="QLabel" name="RLV_Label">
     <property name="geometry">
      <rect>
-      <x>550</x>
+      <x>1020</x>
       <y>10</y>
       <width>251</width>
       <height>21</height>
@@ -50,21 +50,11 @@
      <string>                           RAM Live View</string>
     </property>
    </widget>
-   <widget class="QListView" name="RLV_ListView">
-    <property name="geometry">
-     <rect>
-      <x>555</x>
-      <y>40</y>
-      <width>241</width>
-      <height>511</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="Console_Label">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>350</y>
+      <y>390</y>
       <width>58</width>
       <height>16</height>
      </rect>
@@ -77,7 +67,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>450</y>
+      <y>530</y>
       <width>101</width>
       <height>16</height>
      </rect>
@@ -89,10 +79,10 @@
    <widget class="QPushButton" name="NextButton">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>370</y>
+      <x>830</x>
+      <y>410</y>
       <width>91</width>
-      <height>31</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">
@@ -102,10 +92,10 @@
    <widget class="QPushButton" name="Halt_Button">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>410</y>
+      <x>830</x>
+      <y>480</y>
       <width>91</width>
-      <height>31</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">
@@ -115,10 +105,10 @@
    <widget class="QPushButton" name="ClearButton">
     <property name="geometry">
      <rect>
-      <x>459</x>
-      <y>470</y>
+      <x>830</x>
+      <y>550</y>
       <width>91</width>
-      <height>81</height>
+      <height>121</height>
      </rect>
     </property>
     <property name="text">
@@ -129,9 +119,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>470</y>
-      <width>431</width>
-      <height>81</height>
+      <y>550</y>
+      <width>811</width>
+      <height>121</height>
      </rect>
     </property>
    </widget>
@@ -139,9 +129,101 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>370</y>
-      <width>431</width>
-      <height>81</height>
+      <y>410</y>
+      <width>811</width>
+      <height>121</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>970</x>
+      <y>40</y>
+      <width>51</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Address</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>1100</x>
+      <y>40</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Value</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>1200</x>
+      <y>40</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Name</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>1290</x>
+      <y>40</y>
+      <width>21</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Ref</string>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="AddressBrowser">
+    <property name="geometry">
+     <rect>
+      <x>930</x>
+      <y>60</y>
+      <width>141</width>
+      <height>611</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="ValueBrowser">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>60</y>
+      <width>101</width>
+      <height>611</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="NameBrowser">
+    <property name="geometry">
+     <rect>
+      <x>1170</x>
+      <y>60</y>
+      <width>101</width>
+      <height>611</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="ReferenceBrowser">
+    <property name="geometry">
+     <rect>
+      <x>1270</x>
+      <y>60</y>
+      <width>61</width>
+      <height>611</height>
      </rect>
     </property>
    </widget>
@@ -151,7 +233,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1339</width>
      <height>21</height>
     </rect>
    </property>
