@@ -4,23 +4,15 @@
 #ifndef MODEL_JSON_H
 #define MODEL_JSON_H
 
-static const char *const KEY_VALUE = "key";
-
-static const char *const COUNTER_VALUE = "referenceCount";
-
-static const char *const ADDRESS_VALUE = "addr";
-
-static const char *const VALUE_KEY = "value";
-
-static const char *const POINTER_VALUE = "pointer";
 
 #include "/home/eduardo218/Desktop/Proyecto-1-Datos-II-C/Model/librerias/rapidjson/stringbuffer.h"
 #include "/home/eduardo218/Desktop/Proyecto-1-Datos-II-C/Model/librerias/rapidjson/writer.h"
 #include <sstream>
+#include "iostream"
 #include "../Types/GenericType.h"
 #include "../Types/Int/Integer.h"
-#include "iostream"
 #include "../../librerias/rapidjson/document.h"
+#include "Coms/Message.h"
 
 using namespace rapidjson;
 using namespace std;
@@ -122,6 +114,51 @@ public:
 
     }
 
+    static string generateJson(Message *msg) {
+        //CREATE WRITER
+        StringBuffer s;
+        Writer<StringBuffer> writer(s);
+        writer.StartObject();
+        /*  "CREATE" - FOR CREATING AN INSTANCE\n
+        *  "MODIFY" - FOR MODIFYING AN EXISTING INSTANCE\n
+        *  "SEARCH" - FOR SEARCHING AN INSTANCE*/
+        //FILL THE SPACES IN THE JSON FILE
+        if (msg->getAction() == CREATE) {
+            writer.Key("action");
+            writer.String(CREATE);
+
+            writer.Key("contentJson");
+            writer.String(msg->getContentJson().c_str());
+
+            writer.Key("type");
+            writer.String(msg->getType().c_str());
+        }
+        if (msg->getAction() == MODIFY) {
+            writer.Key("action");
+            writer.String(MODIFY);
+
+            writer.Key("firstVariable");
+            writer.String(msg->getFirstVariable().c_str());
+
+
+            writer.Key("secondVariable"); //string name of the variable
+            writer.String(msg->getSecondVariable().c_str());
+
+            writer.Key("operator"); //string name of the variable
+            writer.String(msg->getOperation().c_str());
+
+        }
+        if (msg->getAction() == SEARCH) {
+            writer.Key("action");
+            writer.String(SEARCH);
+
+            writer.Key("firstVariable");
+            writer.String(msg->getFirstVariable().c_str());
+        }
+
+    }
+
+
     template<class T>
     static void readJson(const string &json, GenericType<T> *obj) {
 
@@ -164,6 +201,7 @@ public:
             const char *pointer = doc[POINTER_VALUE].GetString();
             obj->setPointer(pointer);
         }
+        return *obj;
     }
 
 };
