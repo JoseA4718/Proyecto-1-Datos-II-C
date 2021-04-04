@@ -106,6 +106,7 @@ public:
             }
             // *** SI EL VALOR ESTÁ GUARDADO COMO UNA VARIABLE EN EL SERVIDOR +++ [5]
         } else if (isVariableName(element)) {
+            msg->setFirstVariable(element);
             index++;
             if (index >= len)
                 return "";
@@ -113,12 +114,16 @@ public:
             // *** SI EL SIGUIENTE VALOR ES UN OPERADOR DE LA LISTA *** [6]
             if (SUPPORTED_OPERTATOR_LIST->boolSearch(element)) {
                 msg->setAction(MODIFY);
+                msg->setOperation(element);
                 index++;
                 if (index >= len)
                     return "";
                 element = processedLine.get(index);
                 // *** SI EL VALOR ESTÁ GUARDADO COMO UNA VARIABLE EN EL SERVIDOR +++ [7]
                 if (isVariableName(element)) {
+                    msg->setSecondVariable(element);
+                    //todo: agregar la cantidad de memoria que se desea reservar
+                    msg->show();
                     // TODO: ENVIAR REQUEST PARA HACER OPERACION ENTRE VARIABLE 1 Y VARIABLE 2.
                 }
             }
@@ -137,7 +142,7 @@ public:
         msg->setFirstVariable(key);//nombre a buscar
         //msg->show();
         // TODO: HACER CLASE QUE SE ENCARGUE DE CONSULTAR AL SERVIDOR Y METER ESTE CÓDIGO AHÍ....
-        return false;
+        return true;
     }
 
     bool isStruct(string key) {

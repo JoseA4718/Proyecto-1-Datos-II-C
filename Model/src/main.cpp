@@ -4,15 +4,9 @@
 #include "Data Structures/SimplyLinkedList.h"
 
 int main() {
-
-    auto *compiler = new Compiler();
-
-
-    // ERROR CON EL TIPO DE DATO
-
-
-    string linea2 = "Integer var = 2";
-    compiler->compile(linea2);
-
+    int megabytes = 10;
+    int bytes = megabytes * 10^6;
+    void *memoria = calloc(0, bytes);
+    cout << memoria;
 
 }
