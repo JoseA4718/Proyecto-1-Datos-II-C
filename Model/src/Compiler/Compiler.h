@@ -15,9 +15,10 @@
 
 class Compiler {
 private:
-    Json json;
     SimplyLinkedList<string> *TYPE_IDENTIFIER_LIST;
     SimplyLinkedList<string> *SUPPORTED_OPERTATOR_LIST;
+    SimplyLinkedList<int> *TYPE_SIZES_LIST;
+
 
 public:
 
@@ -39,18 +40,26 @@ public:
                     result->append(word);
                     word.clear();
                 }
-
+            } else if (character == ';') {
+                if (!word.empty()) {
+                    result->append(word);
+                    word.clear();
+                }
+                word.push_back(character);
+                result->append(word);
+                word.clear();
+                break;
             } else {
                 word.push_back(character);
             }
             counter++;
         }
-        result->append(word);
+        result->show();
         return *result;
     }
 
     bool dataType(string basicString, string basicString1) {
-        //todo: programar
+        //todo: programar para obtener el tipo de dato ¿?
         return true;
     }
 
@@ -70,7 +79,9 @@ public:
         if (TYPE_IDENTIFIER_LIST->boolSearch(element)) {
             string name;
             string value;
+            int size = getSize(element);
             msg->setAction(CREATE);
+            msg->setSize(size);
             msg->setType(element);
             index++;
             if (index >= len)
@@ -94,10 +105,11 @@ public:
                         dataType(element, processedLine.get(0))) {
                         value = (element);
                         msg->fillJson(name, value);
-                        msg->show();
                     } else {
                         cout << ERROR_DATA_TYPE;
                     }
+                } else if (element == ";") {
+                    return "Crear instancia pero sin valor";
                 } else {
                     cout << ERROR_OPERATOR_ASSIGN_VALUE;
                 }
@@ -123,26 +135,34 @@ public:
                 if (isVariableName(element)) {
                     msg->setSecondVariable(element);
                     //todo: agregar la cantidad de memoria que se desea reservar
-                    msg->show();
                     // TODO: ENVIAR REQUEST PARA HACER OPERACION ENTRE VARIABLE 1 Y VARIABLE 2.
                 }
             }
 
+        } else if (STRUCT_KEY_WORD == (element)) {
+            return "Struct support not implemented yet";
+
         } else {
-            cout << ERROR_DATA_TYPE;
+            cout << element << ERROR_DATA_TYPE;
         }
-        Json *json1 = new Json();
-        return json1->generateJson(msg);
-        return "";
+        return Json::generateJson(msg);
     }
 
     bool isVariableName(string key) {
         Message *msg = new Message();
         msg->setAction(SEARCH);
         msg->setFirstVariable(key);//nombre a buscar
-        //msg->show();
+        // msg->show();
         // TODO: HACER CLASE QUE SE ENCARGUE DE CONSULTAR AL SERVIDOR Y METER ESTE CÓDIGO AHÍ....
-        return true;
+        return false;
+    }
+
+    int getSize(string key) {
+        for (int i = 0; i < TYPE_IDENTIFIER_LIST->getLen(); ++i) {
+            if (TYPE_IDENTIFIER_LIST->get(i) == key) {
+                return TYPE_SIZES_LIST->get(i);
+            }
+        }
     }
 
     bool isStruct(string key) {
@@ -151,6 +171,7 @@ public:
     }
 
 public:
+
     string compile(string line) {
         SimplyLinkedList<string> processedLine = processLine(std::move(line));
         return interpretLine(processedLine);
@@ -159,18 +180,25 @@ public:
     Compiler() {
         TYPE_IDENTIFIER_LIST = new SimplyLinkedList<string>();
         SUPPORTED_OPERTATOR_LIST = new SimplyLinkedList<string>();
-
+        TYPE_SIZES_LIST = new SimplyLinkedList<int>();
 
         TYPE_IDENTIFIER_LIST->append(INTEGER_KEY_WORD);
+        TYPE_SIZES_LIST->append(INT_SIZE);
         TYPE_IDENTIFIER_LIST->append(FLOAT_KEY_WORD);
+        TYPE_SIZES_LIST->append(FLOAT_SIZE);
         TYPE_IDENTIFIER_LIST->append(DOUBLE_KEY_WORD);
+        TYPE_SIZES_LIST->append(DOUBLE_SIZE);
         TYPE_IDENTIFIER_LIST->append(CHAR_KEY_WORD);
+        TYPE_SIZES_LIST->append(CHAR_SIZE);
         TYPE_IDENTIFIER_LIST->append(LONG_KEY_WORD);
+        TYPE_SIZES_LIST->append(LONG_SIZE);
         TYPE_IDENTIFIER_LIST->append(REFERENCE_KEY_WORD);
-        TYPE_IDENTIFIER_LIST->append(STRUCT_KEY_WORD);
+        TYPE_SIZES_LIST->append(REFERENCE_SIZE);
+
         SUPPORTED_OPERTATOR_LIST->append(EQUAL_OPERATOR);
 
     }
+
 };
 
 

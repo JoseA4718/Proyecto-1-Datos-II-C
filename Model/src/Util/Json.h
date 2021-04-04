@@ -132,6 +132,9 @@ public:
 
             writer.Key("type");
             writer.String(msg->getType().c_str());
+
+            writer.Key("size"); //string name of the variable
+            writer.Int(msg->getSize());
         }
         if (msg->getAction() == MODIFY) {
             writer.Key("action");
@@ -146,6 +149,7 @@ public:
 
             writer.Key("operator"); //string name of the variable
             writer.String(msg->getOperation().c_str());
+
 
         }
         if (msg->getAction() == SEARCH) {

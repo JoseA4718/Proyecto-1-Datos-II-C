@@ -29,6 +29,9 @@ private:
     /** Type of the object to create, GO TO Compiler.h for further information.*/
     string type;
 
+    /**Size i bytes */
+    int size;
+
     //|-----------------------------------------------------| //
     //|    * EN CASO DE OPERAR DOS VARIABLES  *             | //
     //|-----------------------------------------------------| //
@@ -47,14 +50,17 @@ public:
     }
 
     void show() {
-        cout << "---- Message generated ----\n" <<
+        cout << "---- Message generated ----\n\n" <<
              "action: " << action <<
+             "\n\n****CREATE****\n\n" <<
              "\ncontentJson: " << contentJson <<
              "\ntype: " << type <<
+             "\nSize: " << this->size <<
+             "\n\n****MODIFY****\n" <<
              "\nfirstVariable: " << firstVariable <<
              "\nsecondVariable: " << secondVariable
              << "\noperation: " << operation <<
-             "\n______________________________\n";
+             "\n______________________________\n\n\n";
     }
 
     const string getContentJson() const {
@@ -71,6 +77,14 @@ public:
 
     void setType(const string type) {
         Message::type = type;
+    }
+
+    int getSize() const {
+        return size;
+    }
+
+    void setSize(int size) {
+        Message::size = size;
     }
 
     const string getFirstVariable() const {
