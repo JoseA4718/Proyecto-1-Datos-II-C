@@ -2,8 +2,8 @@
 #define INTERFACE_H
 #include "string"
 #include <QMainWindow>
-#include "Model/Compiler/Compiler.h"
-#include "Model/Types/GenericType.h"
+#include "Model/src/Compiler/Compiler.h"
+#include "Model/src/Types/GenericType.h"
 
 using namespace std;
 

@@ -6,7 +6,7 @@
 #define MODEL_FLOAT_H
 
 
-#include "Model/Types/GenericType.h"
+#include "Model/src/Types/GenericType.h"
 
 class Float : public GenericType {
 public:

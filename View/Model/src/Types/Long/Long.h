@@ -6,7 +6,7 @@
 #define MODEL_LONG_H
 
 
-#include "Model/Types/GenericType.h"
+#include "Model/src/Types/GenericType.h"
 
 class Long : public GenericType {
 public:

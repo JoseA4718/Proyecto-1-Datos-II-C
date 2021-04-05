@@ -7,14 +7,14 @@
 #include <stdio.h>
 #include <sys/socket.h>
 #include <fstream>
-#include "Model/Types/Char/Char.h"
-#include "Model/Types/Double/Double.h"
-#include "Model/Types/Float/Float.h"
-#include "Model/Types/Int/Integer.h"
-#include "Model/Types/Long/Long.h"
-#include "Model/Types/Reference/Reference.h"
-#include "Model/Types/GenericType.h"
-
+#include "Model/src/Types/Char/Char.h"
+#include "Model/src/Types/Double/Double.h"
+#include "Model/src/Types/Float/Float.h"
+#include "Model/src/Types/Int/Integer.h"
+#include "Model/src/Types/Long/Long.h"
+#include "Model/src/Types/Reference/Reference.h"
+#include "Model/src/Types/GenericType.h"
+#include "Model/src/Compiler/Compiler.h"
 
 using namespace std;
 
