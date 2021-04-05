@@ -239,3 +239,12 @@ compile_commands.json
 # End of https://www.toptal.com/developers/gitignore/api/linux,clion,qt,qtcreator,c++
 
 QT_Interface/.idea/workspace.xml
+View/CMakeLists.txt
+View/CMakeLists.txt
+View/Model/.idea/misc.xml
+View/Model/main.cpp
+View/Model/CMakeLists.txt
+View/Model/.idea/vcs.xml
+View/Model/.idea/modules.xml
+View/Model/.idea/Model.iml
+View/CMakeLists.txt
