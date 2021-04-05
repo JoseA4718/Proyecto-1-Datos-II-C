@@ -15,7 +15,7 @@
 #ifndef RAPIDJSON_IEEE754_
 #define RAPIDJSON_IEEE754_
 
-#include "librerias/rapidjson/rapidjson.h"
+#include "../rapidjson.h"
 
 RAPIDJSON_NAMESPACE_BEGIN
 namespace internal {

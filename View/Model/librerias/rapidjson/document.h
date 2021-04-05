@@ -18,8 +18,8 @@
 /*! \file document.h */
 
 #include "reader.h"
-#include "librerias/rapidjson/internal/meta.h"
-#include "librerias/rapidjson/internal/strfunc.h"
+#include "internal/meta.h"
+#include "internal/strfunc.h"
 #include "memorystream.h"
 #include "encodedstream.h"
 #include <new>      // placement new

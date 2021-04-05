@@ -8,9 +8,9 @@
 
 #include <utility>
 
-#include "Model/Util/Json.h"
-#include "Model/Data Structures/SimplyLinkedList.h"
-#include "Model/Util/Coms/Message.h"
+#include "../Util/Json.h"
+#include "../Data Structures/SimplyLinkedList.h"
+#include "../Util/Coms/Message.h"
 
 
 class Compiler {
@@ -184,14 +184,19 @@ public:
 
         TYPE_IDENTIFIER_LIST->append(INTEGER_KEY_WORD);
         TYPE_SIZES_LIST->append(INT_SIZE);
+
         TYPE_IDENTIFIER_LIST->append(FLOAT_KEY_WORD);
         TYPE_SIZES_LIST->append(FLOAT_SIZE);
+
         TYPE_IDENTIFIER_LIST->append(DOUBLE_KEY_WORD);
         TYPE_SIZES_LIST->append(DOUBLE_SIZE);
+
         TYPE_IDENTIFIER_LIST->append(CHAR_KEY_WORD);
         TYPE_SIZES_LIST->append(CHAR_SIZE);
+
         TYPE_IDENTIFIER_LIST->append(LONG_KEY_WORD);
         TYPE_SIZES_LIST->append(LONG_SIZE);
+
         TYPE_IDENTIFIER_LIST->append(REFERENCE_KEY_WORD);
         TYPE_SIZES_LIST->append(REFERENCE_SIZE);
 

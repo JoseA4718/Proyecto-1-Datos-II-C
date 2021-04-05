@@ -16,10 +16,10 @@
 #define RAPIDJSON_WRITER_H_
 
 #include "stream.h"
-#include "librerias/rapidjson/internal/stack.h"
-#include "librerias/rapidjson/internal/strfunc.h"
-#include "librerias/rapidjson/internal/dtoa.h"
-#include "librerias/rapidjson/internal/itoa.h"
+#include "../rapidjson/internal/stack.h"
+#include "../rapidjson/internal/strfunc.h"
+#include "../rapidjson/internal/dtoa.h"
+#include "../rapidjson/internal/itoa.h"
 #include "stringbuffer.h"
 #include <new>      // placement new
 

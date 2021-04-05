@@ -4,16 +4,16 @@
 #ifndef MODEL_JSON_H
 #define MODEL_JSON_H
 
-#include "librerias/rapidjson/stringbuffer.h"
-#include "librerias/rapidjson/writer.h"
+#include "../../librerias/rapidjson/stringbuffer.h"
+#include "../../librerias/rapidjson/writer.h"
 /*#include "../Model/librerias/rapidjson/stringbuffer.h"
 #include "../Model/librerias/rapidjson/writer.h"*/
 #include <sstream>
 #include "iostream"
-#include "Model/Types/GenericType.h"
-#include "Model/Types/Int/Integer.h"
-#include "librerias/rapidjson/document.h"
-#include "Model/Util/Coms/Message.h"
+#include "../Types/GenericType.h"
+#include "../Types/Int/Integer.h"
+#include "../../librerias/rapidjson/document.h"
+#include "Coms/Message.h"
 
 using namespace rapidjson;
 using namespace std;

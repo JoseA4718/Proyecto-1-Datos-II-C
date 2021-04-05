@@ -6,7 +6,7 @@
 #define MODEL_INTEGER_H
 
 
-#include "Model/Types/GenericType.h"
+#include "../GenericType.h"
 
 class Integer : public GenericType {
 public:
