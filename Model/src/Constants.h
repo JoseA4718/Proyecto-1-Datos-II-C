@@ -50,7 +50,7 @@ static const auto STRUCT_KEY_WORD = "Struct";
 static const auto EQUAL_OPERATOR = "=";
 
 // **** ERROR MESSAGES **** //
-static const char *const ERROR_DATA_TYPE = "\n: is not a valid identifier. \n";
+static const char *const ERROR_DATA_TYPE = " : is not a valid identifier. \n";
 static const char *const ERROR_OPERATOR_ASSIGN_VALUE = "\nERROR CON EL OPERADOR A UTILIZAR\n";
 static const char *const ERROR_NAME_OF_VARIABLE = "\nERROR CON EL NOMBRE DE LA VARIABLE\n";
 #endif //MODEL_CONSTANTS_H

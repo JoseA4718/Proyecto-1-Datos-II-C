@@ -23,16 +23,17 @@ private:
 public:
 
     /**
-     * Splits a string in substrings, with the slice char as the blank space.
+     * Splits a string in substrings, with the slice char as the blank space or the semicolon.
      * @param line string to split.
       * @return Linked list, with substrings, in order, first word on string, first on list.
      */
     static SimplyLinkedList<string> processLine(string line) {
-
+        bool flag = false;
         auto *result = new SimplyLinkedList<string>();
         int counter = 0;
         char character;
         string word;
+
         while (counter < line.length()) {
             character = line[counter];
             if (isblank(character)) {
@@ -48,13 +49,15 @@ public:
                 word.push_back(character);
                 result->append(word);
                 word.clear();
+                flag = true;
                 break;
             } else {
                 word.push_back(character);
             }
             counter++;
         }
-        result->show();
+        if (!flag)
+            throw std::logic_error("No hay punto y coma!");
         return *result;
     }
 
@@ -63,7 +66,7 @@ public:
         return true;
     }
 
-/**
+    /**
      * Method for interpreting an already processed by processLine()
      * @param processedLine list of words found in the line of code.
      */
@@ -72,8 +75,6 @@ public:
         int index = 0;
         int len = processedLine.getLen();
         string element;
-        if (index >= len)
-            return "";
         element = processedLine.get(index);
         //***SI INICIA CON IDENTIFICADOR DE TIPO PRIMITIVO*** [1]
         if (TYPE_IDENTIFIER_LIST->boolSearch(element)) {
@@ -84,71 +85,61 @@ public:
             msg->setSize(size);
             msg->setType(element);
             index++;
-            if (index >= len)
-                return "";
             element = processedLine.get(index);
             //*** SI EL NOMBRE DEESPUÉS DEL IDENTIFICADOR NO ES PALABRA RESERVADA Y NO ES UN IDENTIFICADOR USADO EN EL SERVIDOR***[2]
             if (!isVariableName(element) and !TYPE_IDENTIFIER_LIST->boolSearch(element)) {
                 name = (element);
                 index++;
-                if (index >= len)
-                    return "";
                 element = processedLine.get(index);
                 //*** SI SIGUE UN OPERADOR "=" *** [3]
                 if (EQUAL_OPERATOR == element) {
                     index++;
-                    if (index >= len)
-                        return "";
                     element = processedLine.get(index);
                     //*** SI EL NOMBRE DEESPUÉS DEL IDENTIFICADOR NO ES PALABRA RESERVADA Y COINCIDE CON EL TIPO QUE SE ASIGNÓ EN [1] *** [4]
                     if (!TYPE_IDENTIFIER_LIST->boolSearch(element) and
                         dataType(element, processedLine.get(0))) {
                         value = (element);
                     } else {
-                        cout << ERROR_DATA_TYPE;
+                        throw std::logic_error(ERROR_DATA_TYPE);
                     }
                 } else if (element == ";") {
                 } else {
-                    cout << ERROR_OPERATOR_ASSIGN_VALUE;
+                    throw std::logic_error(ERROR_OPERATOR_ASSIGN_VALUE);
                 }
             } else {
-                cout << ERROR_NAME_OF_VARIABLE;
+                throw std::logic_error(ERROR_NAME_OF_VARIABLE);
             }
             msg->fillJson(name, value);
-            // *** SI EL VALOR ESTÁ GUARDADO COMO UNA VARIABLE EN EL SERVIDOR +++ [5]
+            // *** SI EL VALOR ESTÁ GUARDADO COMO UNA VARIABLE EN EL SERVIDOR *** [5]
         } else if (isVariableName(element)) {
             msg->setFirstVariable(element);
             index++;
-            if (index >= len)
-                return "";
             element = processedLine.get(index);
             // *** SI EL SIGUIENTE VALOR ES UN OPERADOR DE LA LISTA *** [6]
             if (SUPPORTED_OPERTATOR_LIST->boolSearch(element)) {
                 msg->setAction(MODIFY);
                 msg->setOperation(element);
                 index++;
-                if (index >= len)
-                    return "";
                 element = processedLine.get(index);
                 // *** SI EL VALOR ESTÁ GUARDADO COMO UNA VARIABLE EN EL SERVIDOR +++ [7]
                 if (isVariableName(element)) {
                     msg->setSecondVariable(element);
-                    //todo: agregar la cantidad de memoria que se desea reservar
-                    // TODO: ENVIAR REQUEST PARA HACER OPERACION ENTRE VARIABLE 1 Y VARIABLE 2.
                 }
-            }
+            } else {
+                throw std::logic_error("Operador no identificado: " + element);
 
+            }
         } else if (STRUCT_KEY_WORD == (element)) {
-            return "Struct support not implemented yet";
+            throw std::logic_error("NOT IMPLEMENTED");
 
         } else {
-            cout << element << ERROR_DATA_TYPE;
+            throw std::logic_error(element + ERROR_DATA_TYPE);
         }
         return Json::generateJson(msg);
     }
 
-    bool isVariableName(string key) {
-        Message *msg = new Message();
+    static bool isVariableName(string key) {
+        auto *msg = new Message();
         msg->setAction(SEARCH);
         msg->setFirstVariable(key);//nombre a buscar
         // msg->show();
@@ -156,7 +147,7 @@ public:
         return false;
     }
 
-    int getSize(string key) {
+    int getSize(const string &key) {
         for (int i = 0; i < TYPE_IDENTIFIER_LIST->getLen(); ++i) {
             if (TYPE_IDENTIFIER_LIST->get(i) == key) {
                 return TYPE_SIZES_LIST->get(i);
@@ -172,8 +163,18 @@ public:
 public:
 
     string compile(string line) {
-        SimplyLinkedList<string> processedLine = processLine(std::move(line));
-        return interpretLine(processedLine);
+        try {
+
+            SimplyLinkedList<string> processedLine = processLine(std::move(line));
+            return interpretLine(processedLine);
+        }
+        catch (std::logic_error e) {
+            return e.what();
+        } catch (std::out_of_range e) {
+            return e.what();
+        }
+
+
     }
 
     Compiler() {
