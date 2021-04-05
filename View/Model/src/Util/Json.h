@@ -4,10 +4,9 @@
 #ifndef MODEL_JSON_H
 #define MODEL_JSON_H
 
-#include "/home/eduardo218/Desktop/Proyecto-1-Datos-II-C/Model/librerias/rapidjson/stringbuffer.h"
-#include "/home/eduardo218/Desktop/Proyecto-1-Datos-II-C/Model/librerias/rapidjson/writer.h"
-/*#include "../Model/librerias/rapidjson/stringbuffer.h"
-#include "../Model/librerias/rapidjson/writer.h"*/
+#include "../../librerias/rapidjson/stringbuffer.h"
+#include "../../librerias/rapidjson/writer.h"
+
 #include <sstream>
 #include "iostream"
 #include "../Types/GenericType.h"
