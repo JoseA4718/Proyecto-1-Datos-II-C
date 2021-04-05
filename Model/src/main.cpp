@@ -4,6 +4,11 @@ int main() {
 
     auto *com = new Compiler();
 
-    cout << com->compile("Integer v;");
+   // cout << com->compile("Integer var;");
+
+
+
+    cout << com->compile("var == var1;");
+
 
 }

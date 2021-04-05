@@ -125,7 +125,7 @@ public:
     T get(int i) {
 
         if (i >= this->len) {
-            return 0;
+            throw std::out_of_range("Index out of range");
         }
         Node<T> *tmp = this->head;
         for (int j = 0; j < i; ++j) {
