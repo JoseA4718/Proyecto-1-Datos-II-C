@@ -6,8 +6,7 @@
 
 #include "../../librerias/rapidjson/stringbuffer.h"
 #include "../../librerias/rapidjson/writer.h"
-/*#include "../Model/librerias/rapidjson/stringbuffer.h"
-#include "../Model/librerias/rapidjson/writer.h"*/
+
 #include <sstream>
 #include "iostream"
 #include "../Types/GenericType.h"
