@@ -77,8 +77,8 @@ public:
         element = processedLine.get(index);
         //***SI INICIA CON IDENTIFICADOR DE TIPO PRIMITIVO*** [1]
         if (TYPE_IDENTIFIER_LIST->boolSearch(element)) {
-            string name;
-            string value;
+            string name = "null";
+            string value = "null";
             int size = getSize(element);
             msg->setAction(CREATE);
             msg->setSize(size);
@@ -104,18 +104,17 @@ public:
                     if (!TYPE_IDENTIFIER_LIST->boolSearch(element) and
                         dataType(element, processedLine.get(0))) {
                         value = (element);
-                        msg->fillJson(name, value);
                     } else {
                         cout << ERROR_DATA_TYPE;
                     }
                 } else if (element == ";") {
-                    return "Crear instancia pero sin valor";
                 } else {
                     cout << ERROR_OPERATOR_ASSIGN_VALUE;
                 }
             } else {
                 cout << ERROR_NAME_OF_VARIABLE;
             }
+            msg->fillJson(name, value);
             // *** SI EL VALOR ESTÁ GUARDADO COMO UNA VARIABLE EN EL SERVIDOR +++ [5]
         } else if (isVariableName(element)) {
             msg->setFirstVariable(element);
