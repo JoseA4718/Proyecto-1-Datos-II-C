@@ -57,7 +57,7 @@ public:
             counter++;
         }
         if (!flag)
-            throw std::logic_error("No hay punto y coma!");
+            throw std::logic_error("Line does not end with a semicolon");
         return *result;
     }
 

@@ -78,6 +78,7 @@ void interface::on_RunButton_clicked()
 }
 
 void interface::cprint(string string1){
+
     ui->ConsoleTextBrowser->append(QString::fromStdString(string1));
 }
 

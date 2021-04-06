@@ -134,6 +134,16 @@
       <height>121</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Uroob</family>
+      <pointsize>16</pointsize>
+      <italic>true</italic>
+     </font>
+    </property>
+    <property name="cursor" stdset="0">
+     <cursorShape>OpenHandCursor</cursorShape>
+    </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
