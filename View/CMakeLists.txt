@@ -10,6 +10,7 @@ set(CMAKE_AUTORCC ON)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
 # Check https://doc.qt.io/qt/deployment-android.html for more information.
@@ -32,7 +33,7 @@ set(PROJECT_SOURCES
         interface.cpp
         interface.h
         interface.ui
-)
+        Model/src/Socket/TCPClient.cpp Model/src/Socket/TCPClient.h Model/src/Socket/TCPServer.cpp Model/src/Socket/TCPServer.h)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(View
