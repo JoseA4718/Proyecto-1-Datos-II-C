@@ -1,6 +1,9 @@
 #include <iostream>
 #include "src/Compiler/Compiler.h"
+#include "src/Socket/Client.h"
+
 int main() {
-    Compiler *comp = new Compiler();
-    cout << comp->compile("Integer var;");
+    auto *comp = new Compiler();
+    cout << comp->compile("Integer var = 214;");
+
 }

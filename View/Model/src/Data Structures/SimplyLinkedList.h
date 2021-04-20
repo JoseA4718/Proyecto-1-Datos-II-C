@@ -20,18 +20,18 @@ public:
         return value;
     }
 
-    void setValue(const T &value) {
-        Node::value = value;
+    void setValue(const T &newValue) {
+        Node::value = newValue;
     }
 
     Node *getNext() const {
         return next;
     }
 
-    void setNext(Node *next) {
-        Node::next = next;
+    void setNext(Node *newNext) {
+        Node::next = newNext;
     }
-    /*!<Pointer to the next node in the list..*/
+    /*!<Pointer to the newNext node in the list..*/
 
 };
 
