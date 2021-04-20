@@ -109,6 +109,7 @@ public:
             } else {
                 throw std::logic_error(ERROR_NAME_OF_VARIABLE);
             }
+            //todo: http post con msg.to json
             msg->fillJson(name, value);
             // *** SI EL VALOR ESTÁ GUARDADO COMO UNA VARIABLE EN EL SERVIDOR *** [5]
         } else if (isVariableName(element)) {
@@ -123,6 +124,7 @@ public:
                 element = processedLine.get(index);
                 // *** SI EL VALOR ESTÁ GUARDADO COMO UNA VARIABLE EN EL SERVIDOR +++ [7]
                 if (isVariableName(element)) {
+                    //todo:
                     msg->setSecondVariable(element);
                 }
             } else {
@@ -141,6 +143,7 @@ public:
     static bool isVariableName(string key) {
         auto *msg = new Message();
         msg->setAction(SEARCH);
+        //todo: http get con el key (recibe un json)
         msg->setFirstVariable(key);//nombre a buscar
         // msg->show();
         // TODO: HACER CLASE QUE SE ENCARGUE DE CONSULTAR AL SERVIDOR Y METER ESTE CÓDIGO AHÍ....
