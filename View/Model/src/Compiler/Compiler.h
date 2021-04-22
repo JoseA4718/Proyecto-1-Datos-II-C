@@ -11,6 +11,7 @@
 #include "../Util/Json.h"
 #include "../Data Structures/SimplyLinkedList.h"
 #include "../Util/Coms/Message.h"
+#include "../Socket/Client.h"
 
 
 class Compiler {
@@ -167,7 +168,6 @@ public:
 
     string compile(string line) {
         try {
-
             SimplyLinkedList<string> processedLine = processLine(std::move(line));
             return interpretLine(processedLine);
         }
@@ -204,7 +204,6 @@ public:
         TYPE_SIZES_LIST->append(REFERENCE_SIZE);
 
         SUPPORTED_OPERTATOR_LIST->append(EQUAL_OPERATOR);
-
     }
 
 };

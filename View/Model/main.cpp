@@ -1,9 +1,12 @@
-#include <iostream>
-#include "src/Compiler/Compiler.h"
 #include "src/Socket/Client.h"
+#include "src/Compiler/Compiler.h"
 
 int main() {
-    auto *comp = new Compiler();
-    cout << comp->compile("Integer var = 214;");
+    Compiler *c = new Compiler();
+    string message = c->compile("Integer x = 2;");
+    Json *json = new Json();
+    cout << message;
 
 }
+
+
