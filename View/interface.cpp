@@ -15,6 +15,7 @@
 #include "Model/src/Types/Reference/Reference.h"
 #include "Model/src/Types/GenericType.h"
 #include "Model/src/Compiler/Compiler.h"
+#include "Model/src/Socket/Client.h"
 
 using namespace std;
 
@@ -35,7 +36,7 @@ interface::~interface()
 
 void interface::checkLine(string Line){
     cprint(this->compiler->compile(line));
-    cout << this->compiler->compile(line) << endl;
+    Client::getInstance()->Send(this->compiler->compile(line).c_str());
 }
 
 void interface::on_ClearButton_clicked()
@@ -51,17 +52,6 @@ void interface::on_Halt_Button_clicked()
     ui->CodingSpace->clear();
 }
 
-void interface::on_NextButton_clicked()
-{
-    cout << "Next Line" << endl;
-    ifstream MyReadFile("code.txt");
-    for (int i = 1; i <= counter ; ++i) {
-        getline(MyReadFile, line);
-    }
-    checkLine(line);
-    cprint(line);
-    counter += 1;
-}
 
 void interface::on_RunButton_clicked()
 {
@@ -76,6 +66,20 @@ void interface::on_RunButton_clicked()
     MyReadFile.close();
     counter += 1;
 }
+
+
+void interface::on_NextButton_clicked()
+{
+    cout << "Next Line" << endl;
+    ifstream MyReadFile("code.txt");
+    for (int i = 1; i <= counter ; ++i) {
+        getline(MyReadFile, line);
+    }
+    checkLine(line);
+    cprint(line);
+    counter += 1;
+}
+
 
 void interface::cprint(string string1){
 

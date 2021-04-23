@@ -1,15 +1,17 @@
 //
-// Created by josea4718 on 4/19/21.
+// Created by josea4718 on 4/22/21.
 //
 
 #include "Client.h"
-#include "string"
 
+Client* Client::unique_instance = NULL;
 Client::Client() {}
 
-void Client::Send(char *msg) {
-    int sendRes = send(sock, msg, strlen(msg), 0);
-    if (sendRes == -1) {
-        std::cout << "Send message failed" << std::endl;
+
+
+Client *Client::getInstance() {
+    if (unique_instance == NULL){
+        unique_instance = new Client();
     }
+    return unique_instance;
 }

@@ -33,7 +33,7 @@ set(PROJECT_SOURCES
         interface.cpp
         interface.h
         interface.ui
-        )
+        Model/src/Socket/Client.cpp Model/src/Socket/Client.h)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(View

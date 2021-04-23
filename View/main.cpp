@@ -2,17 +2,8 @@
 #include "Model/src/Socket/Client.h"
 #include <QApplication>
 #include <thread>
-#include "pthread.h"
 
 using namespace std;
-
-
-void RunClient(){
-
-    cout << "Client Running" << endl;
-    Client c = Client::getInstance();
-     c.Start();
-}
 
 int RunInterface(int argc, char *argv[])
 {
@@ -20,6 +11,10 @@ int RunInterface(int argc, char *argv[])
     interface w;
     w.show();
     return a.exec();
+}
+
+void RunClient(){
+    Client::getInstance()->initClient();
 }
 
 int main (int argc, char *argv[]){

@@ -1,10 +1,9 @@
 //
-// Created by josea4718 on 4/19/21.
+// Created by josea4718 on 4/22/21.
 //
 
 #ifndef VIEW_CLIENT_H
 #define VIEW_CLIENT_H
-
 
 #include <iostream>
 #include <sys/types.h>
@@ -15,62 +14,85 @@
 #include <string.h>
 #include <string>
 
-#pragma once
-
 using namespace std;
-
 class Client {
 private:
-    int sock;
-    int port = 5000;
-    int connectRes;
-    sockaddr_in hint;
-    std::string ipAddress = "127.0.0.1";
-    char buf[4092];
-    static Client *instance;
-
     Client();
-
+    static Client* unique_instance;
 public:
-    static Client getInstance() {
-        if (instance == nullptr) {
-            instance = new Client;
-        }
-        return *instance;
-    }
-
-    [[noreturn]] void Start() {
-
+    static Client* getInstance();
+    int sock;
+    int initClient()
+    {
+        //	Create a socket
         sock = socket(AF_INET, SOCK_STREAM, 0);
-        if (sock == -1) {
-            exit(1);
+        if (sock == -1)
+        {
+            return 1;
         }
 
+        //	Create a hint structure for the server we're connecting with
+        int port = 54000;
+        string ipAddress = "127.0.0.1";
+
+        sockaddr_in hint;
         hint.sin_family = AF_INET;
         hint.sin_port = htons(port);
         inet_pton(AF_INET, ipAddress.c_str(), &hint.sin_addr);
 
-        //    Connect to the server on the socket
-        connectRes = connect(sock, (sockaddr *) &hint, sizeof(hint));
-        if (connectRes == -1) {
-            exit(1);
+        //	Connect to the server on the socket
+        int connectRes = connect(sock, (sockaddr*)&hint, sizeof(hint));
+        if (connectRes == -1)
+        {
+            return 1;
         }
 
-        bool run = true;
-        while (run) {
+        //	While loop:
+        char buf[4096];
+        string userInput;
+
+        do {
+            //		Enter lines of text
+            cout << "> ";
+            getline(cin, userInput);
+
+            //		Send to server
+            int sendRes = send(sock, userInput.c_str(), userInput.size() + 1, 0);
+            if (sendRes == -1)
+            {
+                cout << "Could not send to server! Whoops!\r\n";
+                continue;
+            }
+
+            //		Wait for response
             memset(buf, 0, 4096);
             int bytesReceived = recv(sock, buf, 4096, 0);
-            if (bytesReceived == -1) {
-                std::cout << "Error getting response" << std::endl;
-            } else {
-
-                //        Display response
-                std::cout << "From Server:" << std::string(buf, bytesReceived) << std::endl;
+            if (bytesReceived == -1)
+            {
+                cout << "There was an error getting response from server\r\n";
             }
+            else
+            {
+                //		Display response
+                cout << "SERVER> " << string(buf, bytesReceived) << "\r\n";
+            }
+        } while(true);
+
+        //	Close the socket
+        close(sock);
+
+        return 0;
+    }
+
+    void Send(const char *msg) {
+        int sendRes = send(sock, msg, strlen(msg), 0);
+        if (sendRes == -1) {
+            std::cout << "Send message failed" << std::endl;
         }
     }
 
-    void Send(char *);
 
 };
-#endif
+
+
+#endif //VIEW_CLIENT_H
