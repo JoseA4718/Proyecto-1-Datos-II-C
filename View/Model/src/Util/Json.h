@@ -13,6 +13,7 @@
 #include "../Types/Int/Integer.h"
 #include "../../librerias/rapidjson/document.h"
 #include "Coms/Message.h"
+#include "Coms/Response.h"
 
 using namespace rapidjson;
 using namespace std;
@@ -163,8 +164,8 @@ public:
 
     }
 
-    static void readJson(const string &json, GenericType *obj) {
-
+    static GenericType *readJson(const string &json) {
+        GenericType *obj = new GenericType();
         rapidjson::Document doc;
         doc.Parse<kParseDefaultFlags>(json.c_str());
 
@@ -184,8 +185,16 @@ public:
             int counter = doc[COUNTER_VALUE].GetInt();
             obj->setReferenceCount(counter);
         }
+        if (doc.HasMember(OFFSET_KEY)) {
+            int offset = doc[OFFSET_KEY].GetInt();
+            obj->setOffset(offset);
+        }
+        if (doc.HasMember(TYPE_KEY)) {
+            string type = doc[TYPE_KEY].GetString();
+            obj->setType(type);
+        }
+        return obj;
     }
-
 
     static Reference readJson(const string &json, Reference *obj) {
         rapidjson::Document doc;
@@ -207,6 +216,26 @@ public:
         return *obj;
     }
 
+    static Response *readJsonResponse(string json_response) {
+        rapidjson::Document doc;
+        doc.Parse<kParseDefaultFlags>(json_response.c_str());
+        Response *obj = new Response();
+        if (doc.HasMember(BODY_KEY)) {
+            const char *message = doc[BODY_KEY].GetString();
+            obj->setMessage(message);
+        }
+        if (doc.HasMember(CODE_KEY)) {
+            int code = doc[CODE_KEY].GetInt();
+            obj->setStatusCode(code);
+
+        }
+        if (doc.HasMember(LOG_KEY)) {
+            const char *log = doc[LOG_KEY].GetString();
+            obj->setLog(log);
+        }
+
+        return obj;
+    }
 };
 
 #endif //MODEL_JSON_H

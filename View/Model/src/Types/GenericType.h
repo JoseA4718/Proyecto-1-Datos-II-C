@@ -17,6 +17,31 @@ class GenericType {
 protected:
     /**Size in bytes of the variable*/
     int size;
+    int offset;
+    string type;
+public:
+    const string &getType() const {
+        return type;
+    }
+
+    void setType(const string &type) {
+        GenericType::type = type;
+    }
+
+public:
+    int getOffset() const {
+        return offset;
+    }
+
+    void setOffset(int offset) {
+        GenericType::offset = offset;
+    }
+
+    int getReferenceCount() const {
+        return referenceCount;
+    }
+
+protected:
 
     /**Address of where the variable its stored in the server, we get it from the server itself as a response
      * of the method "create"*/
