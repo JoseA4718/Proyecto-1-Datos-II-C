@@ -164,8 +164,8 @@ public:
 
     }
 
-    static GenericType *readJson(const string &json) {
-        GenericType *obj = new GenericType();
+    static void readJson(const string &json, GenericType *obj) {
+        //GenericType *obj = new GenericType();
         rapidjson::Document doc;
         doc.Parse<kParseDefaultFlags>(json.c_str());
 
@@ -193,10 +193,10 @@ public:
             string type = doc[TYPE_KEY].GetString();
             obj->setType(type);
         }
-        return obj;
+
     }
 
-    static Reference readJson(const string &json, Reference *obj) {
+    static Reference readJsonReference(const string &json, Reference *obj) {
         rapidjson::Document doc;
         doc.Parse<kParseDefaultFlags>(json.c_str());
 

@@ -28,7 +28,17 @@ interface::~interface()
 }
 
 void interface::checkLine(string line){
-    ClientManager::getInstance()->process(line);
+    Response* response = ClientManager::getInstance()->process(line);
+    alprint(response->getLog());
+    switch (response->getStatusCode()) {
+        case CREATED:
+            GenericType* obj = new GenericType();
+            //FIXME
+            Json::readJson(response->getMessage(), obj);
+            obj->show();
+            RamViewPrint(obj);
+            break;
+    }
 }
 
 void interface::on_ClearButton_clicked()
@@ -70,7 +80,9 @@ void interface::on_NextButton_clicked()
     checkLine(line);
     counter += 1;
 }
-
+void interface::alprint(string string1){
+    ui->LogTextBrowser->append(QString::fromStdString(string1));
+}
 
 void interface::cprint(string string1){
 

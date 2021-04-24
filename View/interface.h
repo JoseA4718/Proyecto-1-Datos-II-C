@@ -32,6 +32,8 @@ private slots:
 
     void cprint(std::string);
 
+    void alprint(std::string);
+
     void checkLine(std::string);
 
     void RamViewPrint(GenericType *type);
