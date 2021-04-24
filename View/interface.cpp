@@ -28,10 +28,7 @@ interface::~interface()
 }
 
 void interface::checkLine(string line){
-
-    cprint(this->compiler->compile(line));
     ClientManager::getInstance()->process(line);
-
 }
 
 void interface::on_ClearButton_clicked()
@@ -71,7 +68,6 @@ void interface::on_NextButton_clicked()
         getline(MyReadFile, line);
     }
     checkLine(line);
-    cprint(line);
     counter += 1;
 }
 

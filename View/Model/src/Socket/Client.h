@@ -14,11 +14,18 @@
 #include <string.h>
 #include <string>
 
+
 using namespace std;
 class Client {
 private:
     Client();
     static Client* unique_instance;
+    string message;
+
+public:
+    static Client *getUniqueInstance();
+    const string &getMessage() const;
+
 public:
     static Client* getInstance();
     int sock;
@@ -59,12 +66,16 @@ public:
             {
                 cout << "There was an error getting response from server\r\n";
             }
+            if(bytesReceived == 0){
+                cout << "PETAMOS" << endl;
+            }
             else
             {
                 //		Display response";
-                string response = string(buf, 0,  bytesReceived);
-                cout << "Message Received from server: " << response << endl;
-
+                message = string(buf, 0,  bytesReceived);
+                if (!message.empty()) {
+                    cout << "MESSAGE: " << message << endl;
+                }
             }
         }
 

@@ -15,3 +15,8 @@ Client *Client::getInstance() {
     }
     return unique_instance;
 }
+
+const string &Client::getMessage() const {
+    return message;
+}
+

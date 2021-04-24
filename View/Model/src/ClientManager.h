@@ -7,6 +7,7 @@
 
 
 #include <mutex>
+#include "Socket/Client.h"
 #include "Compiler/Compiler.h"
 
 class ClientManager {
@@ -38,6 +39,9 @@ public:
         string message = this->compiler->compile(line);
 
         // todo: get the response from the server AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+
+        cout << "FROM SERVER: " << Client::getInstance()->getMessage() << endl;
         Client::getInstance()->Send(message.c_str());
 
         string response = R"({"message":"{\"key\":\"help\",\"addr\":\"0x5615eeb6b044\",\"value\":\"1\",\"offset\":1,\"referenceCount\":0,\"offset\":1}","log":"Integer help was created.","statusCode":200})";
