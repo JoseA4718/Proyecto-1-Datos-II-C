@@ -29,7 +29,8 @@ public:
 public:
     static Client* getInstance();
     int sock;
-    int initClient()
+
+    [[noreturn]] int initClient()
     {
         //	Create a socket
         sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -66,15 +67,13 @@ public:
             {
                 cout << "There was an error getting response from server\r\n";
             }
-            if(bytesReceived == 0){
-                cout << "PETAMOS" << endl;
-            }
             else
             {
                 //		Display response";
-                message = string(buf, 0,  bytesReceived);
-                if (!message.empty()) {
-                    cout << "MESSAGE: " << message << endl;
+
+                string tmp = string(buf, 0,  bytesReceived);
+                if (!tmp.empty()) {
+                    message = tmp;
                 }
             }
         }
@@ -84,6 +83,8 @@ public:
 
         return 0;
     }
+
+    void setMessage(const string &message);
 
     void Send(const char *msg) {
         int sendRes = send(sock, msg, strlen(msg), 0);

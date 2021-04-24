@@ -20,3 +20,7 @@ const string &Client::getMessage() const {
     return message;
 }
 
+void Client::setMessage(const string &message) {
+    Client::message = message;
+}
+
