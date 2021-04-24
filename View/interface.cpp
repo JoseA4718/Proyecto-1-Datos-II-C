@@ -7,16 +7,9 @@
 #include <stdio.h>
 #include <sys/socket.h>
 #include <fstream>
-#include "Model/src/Types/Char/Char.h"
-#include "Model/src/Types/Double/Double.h"
-#include "Model/src/Types/Float/Float.h"
-#include "Model/src/Types/Int/Integer.h"
-#include "Model/src/Types/Long/Long.h"
-#include "Model/src/Types/Reference/Reference.h"
-#include "Model/src/Types/GenericType.h"
-#include "Model/src/Compiler/Compiler.h"
-#include "Model/src/Socket/Client.h"
 
+#include "Model/src/Socket/Client.h"
+#include "Model/src/ClientManager.h"
 using namespace std;
 
 string line;
@@ -34,9 +27,11 @@ interface::~interface()
     delete ui;
 }
 
-void interface::checkLine(string Line){
+void interface::checkLine(string line){
+
     cprint(this->compiler->compile(line));
-    Client::getInstance()->Send(this->compiler->compile(line).c_str());
+    ClientManager::getInstance()->process(line);
+
 }
 
 void interface::on_ClearButton_clicked()
