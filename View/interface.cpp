@@ -34,8 +34,11 @@ void interface::checkLine(string line){
         case CREATED:
             GenericType* obj = new GenericType();
             //FIXME
-            Json::readJson(response->getMessage(), obj);
-            obj->show();
+            cout << "Json de objeto = " << response->getMessage() << endl;
+            obj = Json::readJson(response->getMessage());
+            string addr = Json::getAddr(response->getMessage());
+            cout << "Addr de objeto = " << addr << endl;
+            obj->setAddr(addr.c_str());
             RamViewPrint(obj);
             break;
     }

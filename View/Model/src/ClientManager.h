@@ -35,16 +35,14 @@ public:
     static ClientManager *getInstance();
 
     Response *process(string line) {
-        cout << "Processing line: " << line << endl;
+
         string message = this->compiler->compile(line);
 
-        // todo: get the response from the server AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         Client::getInstance()->Send(message.c_str());
         string response;
         while (response.empty()){
             response = Client::getInstance()->getMessage();
         }
-        cout << "FROM SERVER: " << response << endl;
         Client::getInstance()->setMessage("");
 
         Response *result = Json::readJsonResponse(response);
