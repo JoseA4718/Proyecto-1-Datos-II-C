@@ -20,6 +20,9 @@ private:
     /**Singleton instance*/
     static ClientManager *pinstance_;
     static std::mutex mutex_;
+public:
+    Compiler *getCompiler() const;
+
 protected:
     ClientManager() {
         compiler = new Compiler();
@@ -59,6 +62,10 @@ ClientManager *ClientManager::getInstance() {
         pinstance_ = new ClientManager();
     }
     return pinstance_;
+}
+
+Compiler *ClientManager::getCompiler() const {
+    return compiler;
 }
 
 #endif //MODEL_CLIENTMANAGER_H

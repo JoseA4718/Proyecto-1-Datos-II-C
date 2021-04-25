@@ -52,9 +52,18 @@ public:
                 word.clear();
                 flag = true;
                 break;
+            } else if (character == '=') {
+                if (!word.empty()) {
+                    result->append(word);
+                    word.clear();
+                }
+                word.push_back(character);
+                result->append(word);
+                word.clear();
             } else {
                 word.push_back(character);
             }
+
             counter++;
         }
         if (!flag)
