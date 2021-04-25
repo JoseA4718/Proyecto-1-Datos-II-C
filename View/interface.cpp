@@ -20,6 +20,7 @@ interface::interface(QWidget *parent)
 {
     ui->setupUi(this);
     compiler = new Compiler();
+    fillLines();
 }
 
 interface::~interface()
@@ -112,4 +113,9 @@ void interface::RamViewPrint(GenericType *type){
 }
 
 
-
+void interface::fillLines()
+{
+    for (int i = 0; i < 18; i++) {
+        ui->LineBrowser->append(QString::fromStdString(to_string(i)));
+    }
+}

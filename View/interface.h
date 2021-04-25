@@ -38,6 +38,8 @@ private slots:
 
     void RamViewPrint(GenericType *type);
 
+    void fillLines();
+
 private:
     Ui::interface *ui;
     QString CodeFile;
