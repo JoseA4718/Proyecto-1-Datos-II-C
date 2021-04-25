@@ -11,12 +11,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3a4a21d-5135-4857-a3d1-f37fa946ab9f" name="Default Changelist" comment="Added socket for sending messages.">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/eduardo218.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Util/Coms/Response.h" afterDir="false" />
+    <list default="true" id="d3a4a21d-5135-4857-a3d1-f37fa946ab9f" name="Default Changelist" comment="Added singleton thread safe to ClientManager.h">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Constants.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Constants.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ClientManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClientManager.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Types/GenericType.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Types/GenericType.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Util/Json.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Util/Json.h" afterDir="false" />
     </list>
@@ -67,11 +64,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Model" type="CMakeRunConfiguration" factoryName="Application" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Model" TARGET_NAME="Model" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Model" RUN_TARGET_NAME="Model">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -116,7 +108,9 @@
       <workItem from="1618958077885" duration="4883000" />
       <workItem from="1618984329534" duration="200000" />
       <workItem from="1619098432668" duration="767000" />
-      <workItem from="1619209225379" duration="1166000" />
+      <workItem from="1619209225379" duration="4041000" />
+      <workItem from="1619225875073" duration="4254000" />
+      <workItem from="1619319936038" duration="2759000" />
     </task>
     <task id="LOCAL-00001" summary="Added socket for sending messages.">
       <created>1619098585831</created>
@@ -125,7 +119,28 @@
       <option name="project" value="LOCAL" />
       <updated>1619098585831</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added json conversion for response message.">
+      <created>1619210583058</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1619210583058</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added Client manager for compiling lines and sending requests to the server.">
+      <created>1619213089250</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1619213089250</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added singleton thread safe to ClientManager.h">
+      <created>1619227979936</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1619227979936</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,6 +160,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added socket for sending messages." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added socket for sending messages." />
+    <MESSAGE value="Added json conversion for response message." />
+    <MESSAGE value="Added Client manager for compiling lines and sending requests to the server." />
+    <MESSAGE value="Added singleton thread safe to ClientManager.h" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added singleton thread safe to ClientManager.h" />
   </component>
 </project>

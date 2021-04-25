@@ -164,11 +164,17 @@ public:
 
     }
 
-    static void readJson(const string &json, GenericType *obj) {
-        //GenericType *obj = new GenericType();
+    static GenericType *readJson(const string &json ) {
+        GenericType *obj = new GenericType();
+
         rapidjson::Document doc;
         doc.Parse<kParseDefaultFlags>(json.c_str());
 
+        if (doc.HasMember(ADDRESS_VALUE)) {
+            const char *addr = (doc[ADDRESS_VALUE].GetString());
+            cout << "Memory address: " << addr << endl;
+            obj->setAddr(addr);
+         }
         if (doc.HasMember(KEY_VALUE)) {
             const char *keyName = doc[KEY_VALUE].GetString();
             obj->setKey(keyName);
@@ -176,10 +182,6 @@ public:
         if (doc.HasMember(VALUE_KEY)) {
             const char *value = doc[VALUE_KEY].GetString();
             obj->setValue(value);
-        }
-        if (doc.HasMember(ADDRESS_VALUE)) {
-            const char *addr = (doc[ADDRESS_VALUE].GetString());
-            obj->setAddr(addr);
         }
         if (doc.HasMember(COUNTER_VALUE)) {
             int counter = doc[COUNTER_VALUE].GetInt();
@@ -193,9 +195,19 @@ public:
             string type = doc[TYPE_KEY].GetString();
             obj->setType(type);
         }
-
+        obj->show();
+        return obj;
     }
+   static string getAddr(string json){
+       rapidjson::Document doc;
+       doc.Parse<kParseDefaultFlags>(json.c_str());
 
+       if (doc.HasMember(ADDRESS_VALUE)) {
+           const char *addr = (doc[ADDRESS_VALUE].GetString());
+           cout << "Memory address: " << addr << endl;
+           return addr;
+        }
+   }
     static Reference readJsonReference(const string &json, Reference *obj) {
         rapidjson::Document doc;
         doc.Parse<kParseDefaultFlags>(json.c_str());

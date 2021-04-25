@@ -20,6 +20,9 @@ protected:
     int offset;
     string type;
 public:
+    /**Address of where the variable its stored in the server, we get it from the server itself as a response
+     * of the method "create"*/
+    const char *addr;
     const string &getType() const {
         return type;
     }
@@ -43,9 +46,7 @@ public:
 
 protected:
 
-    /**Address of where the variable its stored in the server, we get it from the server itself as a response
-     * of the method "create"*/
-    const char *addr;
+
 
     /** Name of the variable, used for identifying the variable among the others, its an unique value
      * and it cannot be any of the reserved words of C!.
