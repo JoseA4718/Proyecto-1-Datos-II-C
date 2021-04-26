@@ -32,7 +32,7 @@ void interface::checkLine(string line){
     Response* response = ClientManager::getInstance()->process(line);
     alprint(response->getLog());
     switch (response->getStatusCode()) {
-        case CREATED:
+        case CREATED:{
             GenericType* obj = new GenericType();
             //FIXME
             cout << "Json de objeto = " << response->getMessage() << endl;
@@ -41,7 +41,12 @@ void interface::checkLine(string line){
             cout << "Addr de objeto = " << addr << endl;
             obj->setAddr(addr.c_str());
             RamViewPrint(obj);
-            break;
+            break;}
+    case OK:{
+        cout << "Response OK: " << response->getLog() << endl;
+        break;
+    }
+
     }
 }
 
@@ -107,9 +112,12 @@ void interface::RamViewPrint(GenericType *type){
     stringstream ss;
     ss << references;
     string references1 = ss.str();
-
+    if(!value1.empty()){
+        ui->ValueBrowser->append(QString::fromStdString(value1));}
+    else{
+         ui->ValueBrowser->append(QString::fromStdString("Undefined"));
+    }
     ui->NameBrowser->append(QString::fromStdString(name1));
-    ui->ValueBrowser->append(QString::fromStdString(value1));
     ui->AddressBrowser->append(QString::fromStdString(address1));
     ui->ReferenceBrowser->append(QString::fromStdString(references1));
 

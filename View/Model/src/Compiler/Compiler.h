@@ -97,8 +97,8 @@ public:
         element = processedLine.get(index);
         //***SI INICIA CON IDENTIFICADOR DE TIPO PRIMITIVO*** [1]
         if (TYPE_IDENTIFIER_LIST->boolSearch(element)) {
-            string name = "null";
-            string value = "null";
+            string name = "";
+            string value = "";
             int size = getSize(element);
             msg->setAction(CREATE);
             msg->setSize(size);
@@ -142,7 +142,7 @@ public:
                 index++;
                 element = processedLine.get(index);
                 // *** SI EL VALOR ESTÁ GUARDADO COMO UNA VARIABLE EN EL SERVIDOR +++ [7]
-                if (isVariableName(element)) {
+                if (!element.empty()) {
                     //todo:
                     msg->setSecondVariable(element);
                 }

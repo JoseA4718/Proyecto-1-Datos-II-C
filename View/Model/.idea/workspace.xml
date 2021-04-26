@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
       <config projectName="Model" targetName="Model" />
@@ -11,11 +14,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3a4a21d-5135-4857-a3d1-f37fa946ab9f" name="Default Changelist" comment="Added singleton thread safe to ClientManager.h">
+    <list default="true" id="d3a4a21d-5135-4857-a3d1-f37fa946ab9f" name="Default Changelist" comment="Added coverage for edge cases defining variables. Added ServerConnection.h so Compiler.h and ClientManager.h dont include each other.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ClientManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClientManager.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Types/GenericType.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Types/GenericType.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/Compiler.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Compiler.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Util/Json.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Util/Json.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../interface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../interface.cpp" afterDir="false" />
     </list>
     <list id="74374f0d-a6a8-4033-8103-fe0cd7a396c8" name="Changes by josea4718" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,6 +72,11 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -111,6 +119,8 @@
       <workItem from="1619209225379" duration="4041000" />
       <workItem from="1619225875073" duration="4254000" />
       <workItem from="1619319936038" duration="2759000" />
+      <workItem from="1619388149139" duration="6055000" />
+      <workItem from="1619404411227" duration="1365000" />
     </task>
     <task id="LOCAL-00001" summary="Added socket for sending messages.">
       <created>1619098585831</created>
@@ -140,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619227979936</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added coverage for edge cases defining variables. Added ServerConnection.h so Compiler.h and ClientManager.h dont include each other.">
+      <created>1619402224772</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1619402224772</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,6 +180,7 @@
     <MESSAGE value="Added json conversion for response message." />
     <MESSAGE value="Added Client manager for compiling lines and sending requests to the server." />
     <MESSAGE value="Added singleton thread safe to ClientManager.h" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added singleton thread safe to ClientManager.h" />
+    <MESSAGE value="Added coverage for edge cases defining variables. Added ServerConnection.h so Compiler.h and ClientManager.h dont include each other." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added coverage for edge cases defining variables. Added ServerConnection.h so Compiler.h and ClientManager.h dont include each other." />
   </component>
 </project>

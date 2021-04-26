@@ -124,39 +124,39 @@ public:
         *  "SEARCH" - FOR SEARCHING AN INSTANCE*/
         //FILL THE SPACES IN THE JSON FILE
         if (msg->getAction() == CREATE) {
-            writer.Key("action");
+            writer.Key(ACTION_KEY);
             writer.String(CREATE);
 
-            writer.Key("contentJson");
+            writer.Key(CONTENT_KEY);
             writer.String(msg->getContentJson().c_str());
 
-            writer.Key("type");
+            writer.Key(TYPE_KEY);
             writer.String(msg->getType().c_str());
 
-            writer.Key("size"); //string name of the variable
+            writer.Key(SIZE_KEY); //string name of the variable
             writer.Int(msg->getSize());
         }
         if (msg->getAction() == MODIFY) {
-            writer.Key("action");
+            writer.Key(ACTION_KEY);
             writer.String(MODIFY);
 
-            writer.Key("firstVariable");
+            writer.Key(FIRST_VAR_KEY);
             writer.String(msg->getFirstVariable().c_str());
 
 
-            writer.Key("secondVariable"); //string name of the variable
+            writer.Key(SECOND_VAR_KEY); //string name of the variable
             writer.String(msg->getSecondVariable().c_str());
 
-            writer.Key("operator"); //string name of the variable
+            writer.Key(OPERATION_KEY); //string name of the variable
             writer.String(msg->getOperation().c_str());
 
 
         }
         if (msg->getAction() == SEARCH) {
-            writer.Key("action");
+            writer.Key(ACTION_KEY);
             writer.String(SEARCH);
 
-            writer.Key("firstVariable");
+            writer.Key(FIRST_VAR_KEY);
             writer.String(msg->getFirstVariable().c_str());
         }
         writer.EndObject();
