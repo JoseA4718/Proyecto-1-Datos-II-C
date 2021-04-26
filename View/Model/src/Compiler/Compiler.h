@@ -7,11 +7,11 @@
 
 
 #include <utility>
-
 #include "../Util/Json.h"
 #include "../Data Structures/SimplyLinkedList.h"
 #include "../Util/Coms/Message.h"
 #include "../Socket/Client.h"
+#include "../ServerConnection.h"
 
 
 class Compiler {
@@ -60,6 +60,14 @@ public:
                 word.push_back(character);
                 result->append(word);
                 word.clear();
+            } else if (character == '<') {
+                //verificar que la palabra que ya está es "Reference"
+                //recorrer el string hasta encontrar el >
+                //sino, tirar error
+                //asignar el valor en la lista y seguir normalmente
+                // buscar el nombre, normal.
+                // luego del nombre tiene que seguir un ____.getAddr()
+
             } else {
                 word.push_back(character);
             }
@@ -84,6 +92,7 @@ public:
         auto *msg = new Message();
         int index = 0;
         int len = processedLine.getLen();
+        string result;
         string element;
         element = processedLine.get(index);
         //***SI INICIA CON IDENTIFICADOR DE TIPO PRIMITIVO*** [1]
@@ -110,14 +119,14 @@ public:
                         dataType(element, processedLine.get(0))) {
                         value = (element);
                     } else {
-                        throw std::logic_error(ERROR_DATA_TYPE);
+                        result = (element + ERROR_DATA_TYPE);
                     }
                 } else if (element == ";") {
                 } else {
-                    throw std::logic_error(ERROR_OPERATOR_ASSIGN_VALUE);
+                    result = (element + ERROR_OPERATOR_ASSIGN_VALUE);
                 }
             } else {
-                throw std::logic_error(ERROR_NAME_OF_VARIABLE);
+                result = (element + ERROR_NAME_OF_VARIABLE);
             }
             //todo: http post con msg.to json
             msg->fillJson(name, value);
@@ -138,26 +147,33 @@ public:
                     msg->setSecondVariable(element);
                 }
             } else {
-                throw std::logic_error("Operador no identificado: " + element);
+                result = (element + ERROR_OPERATOR_ASSIGN_VALUE);
 
             }
         } else if (STRUCT_KEY_WORD == (element)) {
-            throw std::logic_error("NOT IMPLEMENTED");
+            result = ("NOT IMPLEMENTED");
 
         } else {
-            throw std::logic_error(element + ERROR_DATA_TYPE);
+            result = (element + ERROR_DATA_TYPE);
         }
-        return Json::generateJson(msg);
+        if (result.empty()) {
+            result = Json::generateJson(msg);
+        }
+        return result;
     }
 
     static bool isVariableName(string key) {
+        cout << "Searching for..." << key << endl;
+        bool temp = true;
         auto *msg = new Message();
         msg->setAction(SEARCH);
-        //todo: http get con el key (recibe un json)
-        msg->setFirstVariable(key);//nombre a buscar
-        // msg->show();
-        // TODO: HACER CLASE QUE SE ENCARGUE DE CONSULTAR AL SERVIDOR Y METER ESTE CÓDIGO AHÍ....
-        return false;
+        msg->setFirstVariable(key);
+        Response *resp = ServerConnection::sendMessage(Json::generateJson(msg));
+        if (resp->getStatusCode() == NOT_FOUND) {
+            cout << "Not found" << endl;
+            temp = false;
+        }
+        return temp;
     }
 
     int getSize(const string &key) {

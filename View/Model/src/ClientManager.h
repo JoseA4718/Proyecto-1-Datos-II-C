@@ -9,7 +9,11 @@
 #include <mutex>
 #include "Socket/Client.h"
 #include "Compiler/Compiler.h"
+#include "ServerConnection.h"
 
+/**
+ * This class provides an API for the backend of the C! editor.
+ */
 class ClientManager {
 private:
     /**Compiler class for processing the lines of the editor.*/
@@ -38,17 +42,20 @@ public:
     static ClientManager *getInstance();
 
     Response *process(string line) {
+        auto *result = new Response();
+        try {
+            string message = this->compiler->compile(line);
+            if (message[0] != '{' or message[message.length()-1] != '}') {
 
-        string message = this->compiler->compile(line);
-
-        Client::getInstance()->Send(message.c_str());
-        string response;
-        while (response.empty()){
-            response = Client::getInstance()->getMessage();
+                throw message;
+            }
+            result = ServerConnection::sendMessage(message);
+        } catch (string e) {
+            result->setStatusCode(500);
+            result->setLog(e);
+            cerr << e << endl;
         }
-        Client::getInstance()->setMessage("");
 
-        Response *result = Json::readJsonResponse(response);
         return result;
     }
 };

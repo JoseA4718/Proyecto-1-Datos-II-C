@@ -3,4 +3,4 @@ project(Model)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Model main.cpp )
+add_executable(Model main.cpp src/ServerConnection.h)

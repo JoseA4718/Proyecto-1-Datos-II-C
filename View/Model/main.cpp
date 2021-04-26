@@ -1,20 +1,12 @@
 #include "src/ClientManager.h"
 #include "src/Util/Coms/Response.h"
 int main() {
-/*    Compiler *c = new Compiler();
-    string message = c->compile("Integer x = 2;" );
-    Json *json = new Json();
-    cout << message;*/
-    ClientManager *resp = ClientManager::getInstance();
 
-    resp->getInstance()->getCompiler()->processLine("Integer x=3;").show();
-    resp->getInstance()->getCompiler()->processLine("Integer x= 3;").show();
-    resp->getInstance()->getCompiler()->processLine("Integer x =3;").show();
-    resp->getInstance()->getCompiler()->processLine("Integer x = 3;").show();
-    resp->getInstance()->getCompiler()->processLine("Integer x =  3;").show();
-    resp->getInstance()->getCompiler()->processLine("Integer     x   =   3;").show();
+    string str = "{2dfsdffe}";
+    cout << (str[0] == '{') << endl;
+    cout << (str[str.length()-1] == '}') << endl;
 
-    // cout << ServerManager::getInstance()->processRequest(msg3) << endl;
+
 }
 
 

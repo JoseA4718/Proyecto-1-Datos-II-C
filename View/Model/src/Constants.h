@@ -83,5 +83,4 @@ static const char *const ERROR_VARIABLE_NOT_FOUND = ": was not found or it is no
 
 
 
-
 #endif //MODEL_CONSTANTS_H
