@@ -1,0 +1,13 @@
+# Proyecto-1-Datos-II-C
+
+1- To access the doxyfile with the documentation, go to Doxygen/html and locate index.html. Please note that this file can only be opened using a Linux distribution.
+
+2- To access the Server repository please go to https://github.com/Eduardo2108/C-_Server.
+
+3- To ble able to run this proyect correctly make sure you have the following applications in the specified versions: 
+
+      QT version 5.0
+      CMake 3.16.3
+      g++ 9.3.0
+      
+4- All other libraries are already installed as internal libraries within the project files, so no action forward needed.
