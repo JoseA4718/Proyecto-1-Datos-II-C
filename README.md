@@ -11,3 +11,5 @@
       g++ 9.3.0
       
 4- All other libraries are already installed as internal libraries within the project files, so no action forward needed.
+
+5- You can also refer to the Wiki of the project on: https://github.com/JoseA4718/Proyecto-1-Datos-II-C/wiki or check for a file on https://github.com/JoseA4718/Proyecto-1-Datos-II-C with the name "Documentation".
