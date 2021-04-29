@@ -7,7 +7,9 @@
 
 
 #include "Model/src/Types/GenericType.h"
-
+/**
+ * This is the float class
+ */
 class Float : public GenericType {
 public:
     Float(string key, const char *value) {

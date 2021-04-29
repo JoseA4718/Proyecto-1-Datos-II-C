@@ -40,7 +40,11 @@ public:
     void operator=(const ClientManager &) = delete;
 
     static ClientManager *getInstance();
-
+    /**
+     * @brief Compiles the received line and sends it to the server
+     * @param line receives a line to send it to the server
+     * @return the result object of the response
+     */
     Response *process(string line) {
         auto *result = new Response();
         try {
@@ -63,6 +67,10 @@ public:
 ClientManager *ClientManager::pinstance_{nullptr};
 std::mutex ClientManager::mutex_;
 
+/**
+ * @brief Singleton instantiation of the client manager
+ * @return hte client manager singleton instance
+ */
 ClientManager *ClientManager::getInstance() {
     std::lock_guard<std::mutex> lock(mutex_);
     if (pinstance_ == nullptr) {
@@ -70,7 +78,10 @@ ClientManager *ClientManager::getInstance() {
     }
     return pinstance_;
 }
-
+/**
+ *
+ * @return returns the client manager compiler
+ */
 Compiler *ClientManager::getCompiler() const {
     return compiler;
 }

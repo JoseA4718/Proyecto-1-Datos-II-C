@@ -7,7 +7,9 @@
 
 
 #include "Model/src/Types/GenericType.h"
-
+/**
+ * This is the Char class
+ */
 class Char : public GenericType {
 public:
     Char( string key, const char *value) {

@@ -7,7 +7,9 @@
 
 
 #include "Model/src/Types/GenericType.h"
-
+/**
+ * This is the Double class
+ */
 class Double : public GenericType {
 public:
     Double(string key, const char *value) {

@@ -161,7 +161,11 @@ public:
         }
         return result;
     }
-
+    /**
+     * @brief Checks if the string segment that is currently reading is a variable in the server.
+     * @param key string key value
+     * @return boolean response
+     */
     static bool isVariableName(string key) {
         cout << "Searching for..." << key << endl;
         bool temp = true;
@@ -175,7 +179,11 @@ public:
         }
         return temp;
     }
-
+    /**
+     * @brief Checks what kind of generic type it is and returns the size of it.
+     * @param key Key value of the object
+     * @return returns size in memory of the specific generic type.
+     */
     int getSize(const string &key) {
         for (int i = 0; i < TYPE_IDENTIFIER_LIST->getLen(); ++i) {
             if (TYPE_IDENTIFIER_LIST->get(i) == key) {
@@ -183,14 +191,22 @@ public:
             }
         }
     }
-
+    /**
+     * @brief Checks if the currently checked object is a struct
+     * @param key Key value of the object
+     * @return returns boolean response
+     */
     bool isStruct(string key) {
         //TODO: agregar carnita :)
         return false;
     }
 
 public:
-
+    /**
+     * @brief Compiles the line that it receives as a parameter
+     * @param line String line to compile
+     * @return either returns the interpreted line, or the exception if there is an error
+     */
     string compile(string line) {
         try {
             SimplyLinkedList<string> processedLine = processLine(std::move(line));

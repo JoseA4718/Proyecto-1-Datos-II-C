@@ -7,7 +7,9 @@
 
 
 #include "Model/src/Types/GenericType.h"
-
+/**
+ * This is the Long class
+ */
 class Long : public GenericType {
 public:
     Long(string key, const char *value) {
