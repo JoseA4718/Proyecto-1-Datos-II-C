@@ -8,7 +8,7 @@
 
 class ServerConnection {
     /**
-     * Recieves a Message.h in Json format, send it to the server and waits for its response.
+     * Receives a Message.h in Json format, send it to the server and waits for its response.
      * @param message Json format of Message.
      * @return Response from the server.
      */

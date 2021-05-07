@@ -8,7 +8,10 @@ Client* Client::unique_instance = NULL;
 Client::Client() {}
 
 
-
+/**
+ * Singleton instance of the client
+ * @return returns the unique instance of the client
+ */
 Client *Client::getInstance() {
     if (unique_instance == NULL){
         unique_instance = new Client();

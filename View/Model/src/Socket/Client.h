@@ -29,7 +29,10 @@ public:
 public:
     static Client* getInstance();
     int sock;
-
+    /**
+     * Inits the listening port for the client in the specified port on the socket.
+     * @return returns 1 if connection was not successful.
+     */
     [[noreturn]] int initClient()
     {
         //	Create a socket
@@ -85,7 +88,10 @@ public:
     }
 
     void setMessage(const string &message);
-
+    /**
+     * @brief Sends a message through the socket to the server
+     * @param msg the string message to be sent
+     */
     void Send(const char *msg) {
         int sendRes = send(sock, msg, strlen(msg), 0);
         if (sendRes == -1) {

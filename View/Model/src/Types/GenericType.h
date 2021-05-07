@@ -102,7 +102,9 @@ public:
     }
 
 public:
-
+    /**
+     * @brief prints the generic type object in the console
+     */
     void show() {
         cout << "{ Name: " << this->key << " Value: " << this->value << " Address: " << this->addr << "}\n";
     }

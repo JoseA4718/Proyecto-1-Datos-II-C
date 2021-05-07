@@ -10,7 +10,9 @@
 #include "../GenericType.h"
 
 using namespace std;
-
+/**
+ * This is the reference class
+ */
 class Reference {
 private:
     /**Address where the object its allocated.*/
