@@ -75,6 +75,12 @@ void interface::on_ClearButton_clicked()
 void interface::on_Halt_Button_clicked()
 {
     cout << "Operation Halted" << endl;
+    Response *response = ClientManager::getInstance()->halt_server();
+    response->show();
+    if(response->getStatusCode() == OK){
+        alprint(response->getLog());
+        this->clear_RamViewPrint();
+    }
     counter = 1;
     ui->CodingSpace->clear();
 }
@@ -145,6 +151,13 @@ void interface::RamViewPrint(GenericType *type){
     ui->NameBrowser->append(QString::fromStdString(name1));
     ui->AddressBrowser->append(QString::fromStdString(address1));
     ui->ReferenceBrowser->append(QString::fromStdString(references1));
+}
+void interface::clear_RamViewPrint(){
+
+    ui->NameBrowser->clear();
+    ui->AddressBrowser->clear();
+    ui->ReferenceBrowser->clear();
+    ui->ValueBrowser->clear();
 }
 /**
  * @brief prints the number lines in the coding area

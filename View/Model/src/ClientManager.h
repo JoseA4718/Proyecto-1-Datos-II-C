@@ -62,6 +62,13 @@ public:
 
         return result;
     }
+    Response *halt_server(){
+        Message *msg = new Message();
+        msg->setAction(HALT);
+        msg->show();
+        string msg_string = Json::generateJson(msg);
+        return ServerConnection::sendMessage(msg_string);
+    }
 };
 
 ClientManager *ClientManager::pinstance_{nullptr};

@@ -37,6 +37,7 @@ private slots:
     void checkLine(std::string);
 
     void RamViewPrint(GenericType *type);
+    void clear_RamViewPrint();
 
     void fillLines();
 

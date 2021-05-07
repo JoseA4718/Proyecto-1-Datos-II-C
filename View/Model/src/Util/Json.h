@@ -159,6 +159,10 @@ public:
             writer.Key(FIRST_VAR_KEY);
             writer.String(msg->getFirstVariable().c_str());
         }
+        if(msg->getAction() == HALT){
+            writer.Key(ACTION_KEY);
+            writer.String(HALT);
+        }
         writer.EndObject();
         return s.GetString();
 
