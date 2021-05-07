@@ -60,14 +60,6 @@ public:
                 word.push_back(character);
                 result->append(word);
                 word.clear();
-            } else if (character == '<') {
-                //verificar que la palabra que ya está es "Reference"
-                //recorrer el string hasta encontrar el >
-                //sino, tirar error
-                //asignar el valor en la lista y seguir normalmente
-                // buscar el nombre, normal.
-                // luego del nombre tiene que seguir un ____.getAddr()
-
             } else {
                 word.push_back(character);
             }
@@ -148,11 +140,9 @@ public:
                 }
             } else {
                 result = (element + ERROR_OPERATOR_ASSIGN_VALUE);
-
             }
         } else if (STRUCT_KEY_WORD == (element)) {
             result = ("NOT IMPLEMENTED");
-
         } else {
             result = (element + ERROR_DATA_TYPE);
         }

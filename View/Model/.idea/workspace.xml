@@ -16,9 +16,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d3a4a21d-5135-4857-a3d1-f37fa946ab9f" name="Default Changelist" comment="Added coverage for edge cases defining variables. Added ServerConnection.h so Compiler.h and ClientManager.h dont include each other.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compiler/Compiler.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Compiler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Util/Json.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Util/Json.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../interface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../interface.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Memory/Collector.h" beforeDir="false" />
     </list>
     <list id="74374f0d-a6a8-4033-8103-fe0cd7a396c8" name="Changes by josea4718" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,11 +72,6 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -121,6 +116,10 @@
       <workItem from="1619319936038" duration="2759000" />
       <workItem from="1619388149139" duration="6055000" />
       <workItem from="1619404411227" duration="1365000" />
+      <workItem from="1619639682998" duration="400000" />
+      <workItem from="1619673915232" duration="1897000" />
+      <workItem from="1620077527449" duration="599000" />
+      <workItem from="1620147442130" duration="2604000" />
     </task>
     <task id="LOCAL-00001" summary="Added socket for sending messages.">
       <created>1619098585831</created>

@@ -51,7 +51,7 @@ public:
             }
             result = ServerConnection::sendMessage(message);
         } catch (string e) {
-            result->setStatusCode(500);
+            result->setStatusCode(600);
             result->setLog(e);
             cerr << e << endl;
         }

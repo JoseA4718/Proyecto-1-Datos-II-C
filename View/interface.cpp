@@ -46,6 +46,10 @@ void interface::checkLine(string line){
         cout << "Response OK: " << response->getLog() << endl;
         break;
     }
+    case 600:{
+         cprint("Error en compilación: " +response->getLog());
+        break;
+    }
 
     }
 }
