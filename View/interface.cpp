@@ -55,7 +55,11 @@ void interface::checkLine(string line){
             RamViewPrint(obj);
             break;}
         case OK:{
-            cout << "Response OK: " << response->getLog() << endl;
+            cprint("Response OK: " + response->getMessage());
+            break;
+        }
+        case 600:{
+            cprint("Compiling error: " + response->getLog());
             break;
         }
 
