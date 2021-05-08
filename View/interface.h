@@ -41,6 +41,10 @@ private slots:
 
     void fillLines();
 
+    void on_pushButton_clicked();
+
+    void on_CollectorButton_clicked();
+
 private:
     Ui::interface *ui;
     QString CodeFile;

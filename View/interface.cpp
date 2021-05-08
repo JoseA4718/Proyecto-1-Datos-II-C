@@ -42,6 +42,7 @@ void interface::checkLine(string line){
     Response* response = ClientManager::getInstance()->process(line);
     //prints in the application log , the log section of the message from the response
     alprint(response->getLog());
+    cerr  << response->getMessage() << endl;
     //switch-case for the different status codes the response may have.
     switch (response->getStatusCode()) {
         case CREATED:{
@@ -55,7 +56,8 @@ void interface::checkLine(string line){
             RamViewPrint(obj);
             break;}
         case OK:{
-            cprint("Response OK: " + response->getMessage());
+            cprint("Response OK: " + response->getLog());
+
             break;
         }
         case 600:{
@@ -88,15 +90,7 @@ void interface::on_Halt_Button_clicked()
     counter = 1;
     ui->CodingSpace->clear();
 
-    /*PARA EL BOTON DE COLLECTOR:
 
-    Response *response = ClientManager::getInstance()->_runCollector();
-    response->show();
-    if(response->getStatusCode() == OK){
-        alprint(response->getLog());
-     }
-
-*/
 }
 /**
  * @brief Gets all the text from the coding space and saves it on a .txt file. After that reads the first line from the file and starts to process it.
@@ -181,4 +175,16 @@ void interface::fillLines()
     for (int i = 0; i < 18; i++) {
         ui->LineBrowser->append(QString::fromStdString(to_string(i)));
     }
+}
+
+
+
+void interface::on_CollectorButton_clicked()
+{
+    cprint("Memory collector called, server procedures are being issued");
+    Response *response = ClientManager::getInstance()->_runCollector();
+    response->show();
+    if(response->getStatusCode() == OK){
+        alprint(response->getLog());
+     }
 }
