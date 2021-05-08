@@ -69,6 +69,13 @@ public:
         string msg_string = Json::generateJson(msg);
         return ServerConnection::sendMessage(msg_string);
     }
+    Response *_runCollector(){
+        Message *msg = new Message();
+        msg->setAction(COLLECTOR);
+        msg->show();
+        string msg_string = Json::generateJson(msg);
+        return ServerConnection::sendMessage(msg_string);
+    }
 };
 
 ClientManager *ClientManager::pinstance_{nullptr};

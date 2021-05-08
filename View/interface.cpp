@@ -87,6 +87,16 @@ void interface::on_Halt_Button_clicked()
     }
     counter = 1;
     ui->CodingSpace->clear();
+
+    /*PARA EL BOTON DE COLLECTOR:
+
+    Response *response = ClientManager::getInstance()->_runCollector();
+    response->show();
+    if(response->getStatusCode() == OK){
+        alprint(response->getLog());
+     }
+
+*/
 }
 /**
  * @brief Gets all the text from the coding space and saves it on a .txt file. After that reads the first line from the file and starts to process it.
