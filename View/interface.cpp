@@ -56,7 +56,15 @@ void interface::checkLine(string line){
             RamViewPrint(obj);
             break;}
         case OK:{
-            cprint("Response OK: " + response->getLog());
+            cprint("Response OK: " + response->getMessage());
+            //creates a new instance of generic type.
+            GenericType* obj = new GenericType();
+            //gives the generic type a json value from the response.
+            obj = Json::readJson(response->getMessage());
+            string addr = Json::getAddr(response->getMessage());
+            obj->setAddr(addr.c_str());
+            //prints the values of the object in the Ram Live View
+            RamViewPrint(obj);
 
             break;
         }

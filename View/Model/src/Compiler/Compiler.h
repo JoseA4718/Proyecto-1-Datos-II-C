@@ -76,7 +76,23 @@ public:
         return true;
     }
 
-    /**
+    bool isReference(string basicString) {
+        string reference;
+        string type;
+        for (int i = 0; i < basicString.length(); i++) {
+            if (basicString[i] == '<') {
+                if (!(reference == REFERENCE_KEY_WORD)) {
+                    return false;
+                } else {
+                    return true;
+
+                }
+            }
+            reference.push_back(basicString[i]);
+        }
+    }
+
+/**
      * Method for interpreting an already processed by processLine()
      * @param processedLine list of words found in the line of code.
      */
@@ -88,7 +104,7 @@ public:
         string element;
         element = processedLine.get(index);
         //***SI INICIA CON IDENTIFICADOR DE TIPO PRIMITIVO*** [1]
-        if (TYPE_IDENTIFIER_LIST->boolSearch(element)) {
+        if (TYPE_IDENTIFIER_LIST->boolSearch(element) or isReference(element)) {
             string name = "";
             string value = "";
             int size = getSize(element);
